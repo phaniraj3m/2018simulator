@@ -1,11 +1,9 @@
 package org.usfirst.frc.team2175.simulator;
 
-public class Switch
+public class Switch extends Balance
 {
 
-	int owner = 0;
 
-	int color;
 	
 	public Switch(int col)
 	{

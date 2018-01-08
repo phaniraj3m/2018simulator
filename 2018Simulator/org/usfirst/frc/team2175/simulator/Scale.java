@@ -1,8 +1,6 @@
 package org.usfirst.frc.team2175.simulator;
 
-public class Scale
+public class Scale extends Balance
 {
-
-	int owner = 0;
 	
 }
