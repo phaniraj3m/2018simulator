@@ -2,13 +2,7 @@ package org.usfirst.frc.team2175.simulator;
 
 public class GameSimulator
 {
-	
-	
-	int time = 0 ;
-	
-
-
-
+		
 	public static void main(String[] args)
 	{
 		new GameSimulator();
@@ -16,8 +10,7 @@ public class GameSimulator
 
 	public GameSimulator()
 	{
-		// lets simulate some strategy
-
+		// lets simulate a game, in its own thread
 		
 		Game game = new Game(); 
 		game.start();
