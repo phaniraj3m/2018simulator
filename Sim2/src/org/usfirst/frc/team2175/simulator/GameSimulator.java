@@ -13,8 +13,16 @@ public class GameSimulator
 		// lets simulate a game, in its own thread
 		
 		for (int i = 0; i < 100; i++) {
-			Game game = new Game(); 
-			game.start();
+
+			
+			try {
+				Game game = new Game(); 
+				game.run();
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
 		}
 

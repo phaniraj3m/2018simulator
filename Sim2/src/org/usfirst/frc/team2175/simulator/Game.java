@@ -1,6 +1,6 @@
 package org.usfirst.frc.team2175.simulator;
 
-public class Game extends Thread
+public class Game implements Runnable
 {
 	
 	/*
@@ -84,7 +84,7 @@ public class Game extends Thread
 	
 //		System.out.println("Blue score = " + blueTeam.score);
 //		System.out.println("Red score = " + redTeam.score);
-		System.exit(0);
+//		System.exit(0);
 	}
 
 	private void initialize()
@@ -144,4 +144,6 @@ public class Game extends Thread
 			redTeam.incrementScore(scoreIncrement);
 		}
 	}
+
+
 }
