@@ -46,7 +46,7 @@ public class Game extends Thread
 	public void run()
 	{
 
-		System.out.println("Time\tBlue\tRed\tScale\tBlueSwitch\tRedSwitch\\tBlueVault\\tRedVault");
+		System.out.println("Time\tBlue\tRed\tScale\tBlueSwitch\tRedSwitch\tBlueVault\tRedVault");
 
 		
 		// this is the tick every second
