@@ -29,6 +29,8 @@ public class Game extends Thread
 	Scale scale;
 
 	Switch blueSwitch, redSwitch;
+	
+
 
 	int time = 0;
 	
@@ -44,18 +46,19 @@ public class Game extends Thread
 	public void run()
 	{
 
-		System.out.println("Time\tBlue\tRed\tScale\tBlueSwitch\tRedSwitch");
+		System.out.println("Time\tBlue\tRed\tScale\tBlueSwitch\tRedSwitch\\tBlueVault\\tRedVault");
 
 		
 		// this is the tick every second
 		do
 		{
 			time++;
-			redTeam.move();
-			blueTeam.move();
+			redTeam.move(time);
+			blueTeam.move(time);
 			updateScores();
 			System.out.print(time+ "\t" + blueTeam.score + "\t" + redTeam.score + "\t");
-			System.out.println(COLORS[scale.owner] + "\t" + COLORS[blueSwitch.owner] + "\t" + COLORS[redSwitch.owner]);
+			System.out.print(COLORS[scale.owner] + "\t" + COLORS[blueSwitch.owner] + "\t" + COLORS[redSwitch.owner]);
+			System.out.println("\t" + blueTeam.getVaultScore() + "\t" +  redTeam.getVaultScore());
 			
 		}
 		while (time <150);
