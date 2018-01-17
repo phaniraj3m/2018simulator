@@ -68,39 +68,13 @@ public class Team
 		}
 		else
 		{
-			// add to vault once in a while
-
-			int vaultScore = r.nextInt(1000);
-
-			// above 997 - levitate
-			// 994-997 boost
-			// 991-994 force
-
-			if (vaultScore > 980)
+			
+			for (int i = 0; i < robots.length; i++)
 			{
-				int levitate = vault.addToLevitate();
-				if (levitate == 3)
-				{
-					incrementScore(5);
-					incrementScore(30); // free climb
-
-				}
-				else if (levitate != 0)
-				{
-					incrementScore(5);
-				}
-			}
-			else if (vaultScore > 970)
-			{
-				vault.addToBoost();
-				incrementScore(5);
-			}
-			else if (vaultScore > 960)
-			{
-				vault.addToForce();
-				incrementScore(5);
+				
+				Robot robot = robots[i];
+				robot.move(time);
 			}
 		}
-
 	}
 }
