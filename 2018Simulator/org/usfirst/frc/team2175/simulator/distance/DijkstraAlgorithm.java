@@ -55,7 +55,7 @@ public class DijkstraAlgorithm {
 
     }
 
-    private double getDistance(Vertex node, Vertex target) {
+    public double getDistance(Vertex node, Vertex target) {
         for (Edge edge : edges) {
             if (edge.getSource().equals(node)
                     && edge.getDestination().equals(target)) {

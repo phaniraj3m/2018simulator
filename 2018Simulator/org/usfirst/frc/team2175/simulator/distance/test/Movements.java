@@ -43,11 +43,25 @@ public class Movements
 	        DijkstraAlgorithm dijkstra = new DijkstraAlgorithm(graph);
 	        
 	        dijkstra.execute(nodes.get(0));
-	        LinkedList<Vertex> path = dijkstra.getPath(nodes.get(60));
+	        LinkedList<Vertex> path = dijkstra.getPath(nodes.get(64));
 	        
+	        Vertex oldV, newV = null;
+	        double totalD = 0.0;
 	        for (Vertex vertex : path) {
-	            System.out.println(vertex);
+	        	if ( newV != null)
+	        	{
+	        		oldV = newV;
+	        		newV = vertex;
+	        		double distance = dijkstra.getDistance(oldV, newV);
+	        		totalD += distance;
+	        		System.out.println(oldV + " " + newV + " " + distance);
+	        	}
+	        	else
+	        	{
+	        		newV = vertex;
+	        	}
 	        }
+	        System.out.println("Total distance = " + totalD);
 	        
 		}
 		catch (Exception e)
