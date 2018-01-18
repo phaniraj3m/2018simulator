@@ -1,0 +1,66 @@
+﻿Vertex Number,Vertex Name,Vertex X,Vertex Y,Description
+1,V1 - Portal 1,15,15,Starting Area
+2,V2 - Player 1,0,66,Starting Area
+3,V3 - Exchange,0,102,Starting Area
+4,V4 - Exchange,0,150,Starting Area
+5,V5 - Player 2,0,206,Starting Area
+6,V6 - Player 3,0,250,Starting Area
+7,V7 - Portal 2,15,309,Starting Area
+8,V8,60,15,Half Way to Auto Line
+9,V9,60,66,Half Way to Auto Line
+10,V10,60,102,Half Way to Auto Line
+11,V11,60,150,Half Way to Auto Line
+12,V12,60,206,Half Way to Auto Line
+13,V13,60,250,Half Way to Auto Line
+14,V14,60,309,Half Way to Auto Line
+15,V15,120,15,Auto Line
+16,V16,120,66,Auto Line
+17,V17,120,102,Auto Line
+18,V18,120,150,Auto Line Cube Zone
+19,V19,120,206,Auto Line
+20,V20,120,250,Auto Line
+21,V21,120,309,Auto Line
+22,V22,140,15,Switch near extended
+23,V23,140,66,Switch near extended
+24,V24,140,85.25,Switch near corner
+25,V25,140,121.25,Switch near corner
+26,V26,140,193.25,Switch near corner
+27,V27,140,229.25,Switch near corner
+28,V28,140,250,Switch near extended
+29,V29,140,309,Switch near extended
+30,V30,188,15,Switch far extended
+31,V31,188,66,Switch far extended
+32,V32,188,85.25,Switch far corner
+33,V33,188,121.25,Switch far corner
+34,V34,188,193.25,Switch far corner
+35,V35,188,229.25,Switch far corner
+36,V36,188,250,Switch far extended
+37,V37,188,309,Switch far extended
+38,V38,230,15,Platform Zone Middle
+39,V39,230,66,Platform Zone Middle
+40,V40,230,102,Platform Zone Middle
+41,V41,230,150,Platform Zone Middle
+42,V42,230,206,Platform Zone Middle
+43,V43,230,250,Platform Zone Middle
+44,V44,230,309,Platform Zone Middle
+45,V45,261,15,Platform Start
+46,V46,261,66,Platform Start
+47,V47,261,102,Platform Start
+48,V48,261,150,Platform Start
+49,V49,261,206,Platform Start
+50,V50,261,250,Platform Start
+51,V51,261,309,Platform Start
+52,V52,299.65,15,Scale Near
+53,V53,299.65,66,Scale Near
+54,V54,299.65,71.6,Scale Near
+55,V55,299.65,107.6,Scale Near
+56,V56,299.65,215.6,Scale Near
+57,V57,299.65,251.6,Scale Near
+58,V58,299.65,260,Scale Near
+59,V59,299.65,309,Scale Near
+60,V60,324,15,Scale Center
+61,V61,324,66,Scale Center
+62,V62,324,71.6,Scale Center
+63,V63,324,251.6,Scale Center
+64,V64,324,260,Scale Center
+65,V65,324,309,Scale Center

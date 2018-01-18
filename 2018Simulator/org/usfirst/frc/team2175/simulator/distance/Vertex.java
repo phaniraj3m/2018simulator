@@ -3,12 +3,20 @@ package org.usfirst.frc.team2175.simulator.distance;
 public class Vertex
 {
 	final private String id;
-	final private String name;
+	final private String name, description;
+	double x, y;
 
-	public Vertex(String id, String name)
+	public Vertex(String id, String name, String description, double x, double y)
 	{
 		this.id = id;
 		this.name = name;
+		this.description = description;
+		this.x = x;
+		this.y = y;
+	}
+	public Vertex(String id, String name)
+	{
+		this(id, name, name, 0, 0);
 	}
 
 	public String getId()
