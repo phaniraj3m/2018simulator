@@ -19,7 +19,7 @@ public class Test2018Field
     private List<Edge> edges;
 
     @Test
-    public void testExcute() {
+    public void testExecute() {
         nodes = new ArrayList<Vertex>();
         edges = new ArrayList<Edge>();
         

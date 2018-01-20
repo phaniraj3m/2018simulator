@@ -1,7 +1,15 @@
 package org.usfirst.frc.team2175.simulator;
 
+import java.util.Random;
+
 public class Robot
 {
+	
+	Random r = new Random();
+	
+	Vault vault ;
+	
+	
 	int number;
 
 	Team team;
@@ -17,7 +25,8 @@ public class Robot
 		speed = 0;
 		this.color = team.color;
 		this.team = team;
-
+		vault = team.vault;
+		
 		auton();
 	}
 
@@ -71,5 +80,53 @@ public class Robot
 	{
 		return duration;
 		
+	}
+	
+	public void move(int time)
+	{
+
+		if (time < 16)
+		{
+			// auton mode
+
+		}
+		else
+		{
+			// add to vault once in a while
+
+			int vaultScore = r.nextInt(1000);
+
+			// above 997 - levitate
+			// 994-997 boost
+			// 991-994 force
+
+			if (vaultScore > 980)
+			{
+				int levitate = vault.addToLevitate();
+				if (levitate == 3)
+				{
+					team.incrementScore(5);
+					team.incrementScore(30); // free climb
+					vault.setLevitatePlayed(true);
+					
+
+				}
+				else if (levitate != 0)
+				{
+					team.incrementScore(5);
+				}
+			}
+			else if (vaultScore > 970)
+			{
+				vault.addToBoost();
+				team.incrementScore(5);
+			}
+			else if (vaultScore > 960)
+			{
+				vault.addToForce();
+				team.incrementScore(5);
+			}
+		}
+
 	}
 }

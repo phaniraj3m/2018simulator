@@ -16,6 +16,8 @@ public class Vault
 			levitate = new ArrayList<String>();
 
 	private boolean forcePlayed = false, boostPlayed = false, levitatePlayed = false;
+	
+	
 
 	public int addToLevitate()
 	{
@@ -57,5 +59,40 @@ public class Vault
 			return 0;
 		}
 		return boost.size();
+	}
+
+	public void setForcePlayed(boolean forcePlayed)
+	{
+		this.forcePlayed = forcePlayed;
+	}
+
+	public void setBoostPlayed(boolean boostPlayed)
+	{
+		this.boostPlayed = boostPlayed;
+	}
+
+	public void setLevitatePlayed(boolean levitatePlayed)
+	{
+		if ( this.levitatePlayed == false && levitatePlayed == true)
+		{
+			score += 30;
+		}
+		this.levitatePlayed = levitatePlayed;
+		
+	}
+
+	public boolean isForcePlayed()
+	{
+		return forcePlayed;
+	}
+
+	public boolean isBoostPlayed()
+	{
+		return boostPlayed;
+	}
+
+	public boolean isLevitatePlayed()
+	{
+		return levitatePlayed;
 	}
 }
