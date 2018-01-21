@@ -30,14 +30,14 @@ public class Board extends JPanel implements ActionListener {
     
     private void initBoard() {
         
-    	bgImage = loadImage("f://workspace//2018Field.jpg");
+    	bgImage = loadImage(".//2018Field.jpg");
     	
         addKeyListener(new TAdapter());
         setFocusable(true);
         setBackground(Color.BLACK);
 
-        craft1 = new Craft("f://workspace//2175Blue.jpg");
-        craft2 = new Craft("f://workspace//2175Red.jpg");
+        craft1 = new Craft(".//2175Blue.jpg");
+        craft2 = new Craft(".//2175Red.jpg");
 
         timer = new Timer(DELAY, this);
         timer.start();        
