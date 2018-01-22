@@ -108,4 +108,15 @@ public class Vault
 	{
 		return levitatePlayed;
 	}
+	
+	public void initialize()
+	{
+		force.clear();
+		boost.clear();
+		levitate.clear();
+		forcePlayed = false;
+		boostPlayed = false;
+		levitatePlayed = false;
+		
+	}
 }

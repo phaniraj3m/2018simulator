@@ -38,7 +38,7 @@ public class ScorePanel extends JPanel
 		time.setFont(scoreFont);
 		add(time);
 
-		add(Box.createHorizontalStrut(480));
+		add(Box.createHorizontalStrut(460));
 		blueScore = new JLabel("Blue:" + 0);
 		blueScore.setForeground(Color.BLUE);
 		blueScore.setFont(scoreFont);

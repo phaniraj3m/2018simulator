@@ -30,7 +30,13 @@ public class Team
 	{
 		color = col;
 
-		if (col == Game.RED)
+		initialize();
+
+	}
+
+	public void initialize()
+	{
+		if (color == Game.RED)
 		{
 
 			robots[0] = new Robot(180.0,80.0, this, 0);
@@ -44,7 +50,8 @@ public class Team
 			robots[2] = new Robot(980, 380, this, 2);
 
 		}
-
+		score = 0;
+		vault.initialize();
 	}
 
 	public int getVaultScore()

@@ -72,19 +72,22 @@ public class Game extends Thread
 		}
 	}
 
-	private void completeGame()
+	public String completeGame()
 	{
+		String s = "";
 
 		if (blueTeam.score > redTeam.score)
 		{
-			System.out.println("Blue wins by a score of " + blueTeam.score + " to " + redTeam.score);
+			s = "Blue wins by a score of " + blueTeam.score + " to " + redTeam.score;
 		}
 		else
 		{
-			System.out.println("Red wins by a score of " + redTeam.score + " to " + blueTeam.score);
+			s = "Red wins by a score of " + redTeam.score + " to " + blueTeam.score;
 		}
 
-		// System.out.println("Blue score = " + blueTeam.score);
+		System.out.println(s);
+		return s;
+		
 		// System.out.println("Red score = " + redTeam.score);
 		// System.exit(0);
 	}

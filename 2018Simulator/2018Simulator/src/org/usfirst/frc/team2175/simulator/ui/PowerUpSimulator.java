@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
 import org.usfirst.frc.team2175.simulator.Game;
@@ -24,7 +25,7 @@ public class PowerUpSimulator extends JFrame implements ActionListener
 
 	int increment = 100; // 100 milliseconds = real speed
 
-	double multiplier = 10;
+	double multiplier = 15;
 
 	public PowerUpSimulator()
 	{
@@ -90,39 +91,62 @@ public class PowerUpSimulator extends JFrame implements ActionListener
 			game = new Game();
 		}
 
-		if (time < 150 && start)
+		if (!start)
+			return;
+
+		if (time < 150)
 		{
 			time += (multiplier * 1.0 * increment) / 1000.0;
 			game.onTick(time);
 
-			scorePanel.updateTime(time);
+			update();
 
-			scorePanel.updateScores(game.getScores());
-			redVault.updateScores(game.getRedTeam().getForceCount(), game.getRedTeam().getBoostCount(), game.getRedTeam().getLevitateCount());
-			blueVault.updateScores(game.getBlueTeam().getForceCount(), game.getBlueTeam().getBoostCount(), game.getBlueTeam().getLevitateCount());
-
-			Robot [] blueRobots = game.getBlueTeam().getRobots();
-			Robot [] redRobots = game.getRedTeam().getRobots();
-			
-			board.getRedCraft1().setX((int)redRobots[0].getX_position());
-			board.getRedCraft1().setY((int)redRobots[0].getY_position());
-			board.getRedCraft2().setX((int)redRobots[1].getX_position());
-			board.getRedCraft2().setY((int)redRobots[1].getY_position());
-			board.getRedCraft3().setX((int)redRobots[2].getX_position());
-			board.getRedCraft3().setY((int)redRobots[2].getY_position());
-			
-			board.getBlueCraft1().setX((int)blueRobots[0].getX_position());
-			board.getBlueCraft1().setY((int)blueRobots[0].getY_position());
-			board.getBlueCraft2().setX((int)blueRobots[1].getX_position());
-			board.getBlueCraft2().setY((int)blueRobots[1].getY_position());
-			board.getBlueCraft3().setX((int)blueRobots[2].getX_position());
-			board.getBlueCraft3().setY((int)blueRobots[2].getY_position());
-			
-			
-
-			
 			board.repaint();
 		}
+		else
+		{
+			String result = game.completeGame();
+			start = false;
+			JOptionPane.showMessageDialog(this,result,"Result",JOptionPane.PLAIN_MESSAGE);
+			reset();
+		}
+	}
 
+	public void update()
+	{
+		scorePanel.updateTime(time);
+
+		scorePanel.updateScores(game.getScores());
+		redVault.updateScores(game.getRedTeam().getForceCount(), game.getRedTeam().getBoostCount(),
+				game.getRedTeam().getLevitateCount());
+		blueVault.updateScores(game.getBlueTeam().getForceCount(), game.getBlueTeam().getBoostCount(),
+				game.getBlueTeam().getLevitateCount());
+
+		Robot[] blueRobots = game.getBlueTeam().getRobots();
+		Robot[] redRobots = game.getRedTeam().getRobots();
+
+		board.getRedCraft1().setX((int) redRobots[0].getX_position());
+		board.getRedCraft1().setY((int) redRobots[0].getY_position());
+		board.getRedCraft2().setX((int) redRobots[1].getX_position());
+		board.getRedCraft2().setY((int) redRobots[1].getY_position());
+		board.getRedCraft3().setX((int) redRobots[2].getX_position());
+		board.getRedCraft3().setY((int) redRobots[2].getY_position());
+
+		board.getBlueCraft1().setX((int) blueRobots[0].getX_position());
+		board.getBlueCraft1().setY((int) blueRobots[0].getY_position());
+		board.getBlueCraft2().setX((int) blueRobots[1].getX_position());
+		board.getBlueCraft2().setY((int) blueRobots[1].getY_position());
+		board.getBlueCraft3().setX((int) blueRobots[2].getX_position());
+		board.getBlueCraft3().setY((int) blueRobots[2].getY_position());
+	}
+	
+	private void reset()
+	{
+		time = 0;
+		
+		game.getRedTeam().initialize();
+		game.getBlueTeam().initialize();
+		update();
+		board.repaint();
 	}
 }
