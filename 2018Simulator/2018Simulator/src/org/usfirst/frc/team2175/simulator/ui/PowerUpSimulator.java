@@ -12,13 +12,18 @@ import org.usfirst.frc.team2175.simulator.Game;
 
 public class PowerUpSimulator extends JFrame implements ActionListener
 {
+	boolean start  = false;
+	
 
 	Game game;
 	ScorePanel scorePanel;
 
 	double time = 0.0;
 	
-	int increment = 100; // milliseconds
+	int increment = 100; // 100 milliseconds = real speed
+	
+	double multiplier = 10;
+	
 
 	public PowerUpSimulator()
 	{
@@ -40,7 +45,7 @@ public class PowerUpSimulator extends JFrame implements ActionListener
 		VaultPanel blueVault = new VaultPanel(Game.BLUE);
 
 		scorePanel = new ScorePanel();
-		ButtonPanel buttonPanel = new ButtonPanel();
+		ButtonPanel buttonPanel = new ButtonPanel(this);
 
 		add(redVault, BorderLayout.WEST);
 		add(blueVault, BorderLayout.EAST);
@@ -84,9 +89,9 @@ public class PowerUpSimulator extends JFrame implements ActionListener
 			game = new Game();
 		}
 		
-		if ( time < 150)
+		if ( time < 150 && start)
 		{
-			time+= (1.0*increment)/1000.0;
+			time+= (multiplier * 1.0*increment)/1000.0;
 			game.onTick(time);
 
 			scorePanel.updateTime(time);
