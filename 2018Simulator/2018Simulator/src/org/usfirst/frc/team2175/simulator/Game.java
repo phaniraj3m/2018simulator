@@ -81,7 +81,7 @@ public class Game extends Thread
 	
 //		System.out.println("Blue score = " + blueTeam.score);
 //		System.out.println("Red score = " + redTeam.score);
-		System.exit(0);
+//		System.exit(0);
 	}
 
 	private void initialize()
@@ -140,5 +140,13 @@ public class Game extends Thread
 			}
 			redTeam.incrementScore(scoreIncrement);
 		}
+	}
+	
+	public int [] getScores()
+	{
+		int [] scores = new int[2];
+		scores[0] = blueTeam.score;
+		scores[1] = redTeam.score;
+		return scores;
 	}
 }

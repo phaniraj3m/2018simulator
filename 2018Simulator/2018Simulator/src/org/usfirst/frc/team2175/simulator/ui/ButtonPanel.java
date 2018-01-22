@@ -14,5 +14,7 @@ public class ButtonPanel extends JPanel
 		
 		JButton start = new JButton("Start");
 		add(start);
+		
+		
 	}
 }
