@@ -18,6 +18,19 @@ public class Vault
 	private boolean forcePlayed = false, boostPlayed = false, levitatePlayed = false;
 	
 	
+	public int getForceCount()
+	{
+		return force.size();
+	}
+	public int getBoostCount()
+	{
+		return boost.size();
+	}
+	public int getLevitateCount()
+	{
+		return levitate.size();
+	}
+	
 
 	public int addToLevitate()
 	{

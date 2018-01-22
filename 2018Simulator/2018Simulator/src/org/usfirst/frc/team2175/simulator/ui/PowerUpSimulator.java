@@ -10,20 +10,21 @@ import javax.swing.Timer;
 
 import org.usfirst.frc.team2175.simulator.Game;
 
+import com.sun.media.sound.ReferenceCountingDevice;
+
 public class PowerUpSimulator extends JFrame implements ActionListener
 {
-	boolean start  = false;
-	
+	boolean start = false;
 
 	Game game;
 	ScorePanel scorePanel;
+	VaultPanel redVault, blueVault;
 
 	double time = 0.0;
-	
+
 	int increment = 100; // 100 milliseconds = real speed
-	
+
 	double multiplier = 10;
-	
 
 	public PowerUpSimulator()
 	{
@@ -41,14 +42,14 @@ public class PowerUpSimulator extends JFrame implements ActionListener
 
 		add(new Board());
 
-		VaultPanel redVault = new VaultPanel(Game.RED);
-		VaultPanel blueVault = new VaultPanel(Game.BLUE);
+		redVault = new VaultPanel(Game.RED);
+		blueVault = new VaultPanel(Game.BLUE);
 
 		scorePanel = new ScorePanel();
 		ButtonPanel buttonPanel = new ButtonPanel(this);
 
-		add(redVault, BorderLayout.WEST);
-		add(blueVault, BorderLayout.EAST);
+		add(blueVault, BorderLayout.WEST);
+		add(redVault, BorderLayout.EAST);
 
 		add(buttonPanel, BorderLayout.SOUTH);
 		add(scorePanel, BorderLayout.NORTH);
@@ -82,22 +83,25 @@ public class PowerUpSimulator extends JFrame implements ActionListener
 	@Override
 	public void actionPerformed(ActionEvent arg0)
 	{
-		//System.out.println(time);
+		// System.out.println(time);
 
 		if (game == null)
 		{
 			game = new Game();
 		}
-		
-		if ( time < 150 && start)
+
+		if (time < 150 && start)
 		{
-			time+= (multiplier * 1.0*increment)/1000.0;
+			time += (multiplier * 1.0 * increment) / 1000.0;
 			game.onTick(time);
 
 			scorePanel.updateTime(time);
 
-			scorePanel.updateScores(game.getScores());			
+			scorePanel.updateScores(game.getScores());
+			redVault.updateScores(game.getRedTeam().getForceCount(), game.getRedTeam().getBoostCount(), game.getRedTeam().getLevitateCount());
+			blueVault.updateScores(game.getBlueTeam().getForceCount(), game.getBlueTeam().getBoostCount(), game.getBlueTeam().getLevitateCount());
+
 		}
-		
+
 	}
 }

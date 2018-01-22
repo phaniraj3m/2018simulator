@@ -3,6 +3,8 @@ package org.usfirst.frc.team2175.simulator.ui;
 import java.awt.Color;
 import java.awt.Font;
 
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -19,20 +21,28 @@ public class ScorePanel extends JPanel
 
 	public ScorePanel()
 	{
-		setBackground(new Color(255, 0, 255));
+		setBackground(new Color(0,200,0));
+		
+		setLayout(new BoxLayout(this,BoxLayout.X_AXIS));
+		
+		
 		blueScore = new JLabel("Blue:" + 0);
 		blueScore.setForeground(Color.BLUE);
 		blueScore.setFont(scoreFont);
 		add(blueScore);
 		
+		add(Box.createHorizontalStrut(600));
+		
 		time = new JLabel("Time:" + 0);
 		time.setFont(scoreFont);
 		add(time);
 		
+		add(Box.createHorizontalStrut(480));
 		redScore = new JLabel("Red:" + 0);
 		redScore.setFont(scoreFont);
 		redScore.setForeground(Color.RED);
 		add(redScore);
+		
 
 	}
 

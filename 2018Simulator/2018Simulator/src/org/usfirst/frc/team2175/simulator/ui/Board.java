@@ -39,8 +39,8 @@ public class Board extends JPanel implements ActionListener {
         craft1 = new Craft(".//2175Blue.jpg");
         craft2 = new Craft(".//2175Red.jpg");
 
-        timer = new Timer(DELAY, this);
-        timer.start();        
+        // timer = new Timer(DELAY, this);
+        //timer.start();        
     }
 
 

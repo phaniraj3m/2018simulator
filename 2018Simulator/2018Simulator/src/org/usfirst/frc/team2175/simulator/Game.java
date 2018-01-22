@@ -26,6 +26,7 @@ public class Game extends Thread
 	Team blueTeam, redTeam;
 	Robot[] robotsBlue, robotsRed;
 
+	
 	Scale scale;
 
 	Switch blueSwitch, redSwitch;
@@ -157,5 +158,14 @@ public class Game extends Thread
 		scores[0] = blueTeam.score;
 		scores[1] = redTeam.score;
 		return scores;
+	}
+	
+	public Team getRedTeam()
+	{
+		return redTeam;
+	}
+	public Team getBlueTeam()
+	{
+		return blueTeam;
 	}
 }

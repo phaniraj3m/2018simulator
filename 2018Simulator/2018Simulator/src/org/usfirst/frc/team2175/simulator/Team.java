@@ -52,6 +52,19 @@ public class Team
 		return vault.score;
 
 	}
+	
+	public int getForceCount()
+	{
+		return vault.getForceCount();
+	}
+	public int getBoostCount()
+	{
+		return vault.getBoostCount();
+	}
+	public int getLevitateCount()
+	{
+		return vault.getLevitateCount();
+	}
 
 	public void incrementScore(int amount)
 	{
