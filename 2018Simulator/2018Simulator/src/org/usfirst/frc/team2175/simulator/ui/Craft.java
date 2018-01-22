@@ -14,17 +14,17 @@ public class Craft {
     
     private String fileName;
 
-    public Craft(String f) {
+    public Craft(String f, int x_init, int y_init) {
         
-        initCraft(f);
+        initCraft(f,x_init,y_init);
     }
     
-    private void initCraft(String f) {
+    private void initCraft(String f, int x_init, int y_init) {
         
         ImageIcon ii = new ImageIcon(f);
         image = ii.getImage();
-        x = 40;
-        y = 60;        
+        x = x_init;
+        y = y_init;        
     }
 
 
@@ -86,4 +86,14 @@ public class Craft {
             dy = 0;
         }
     }
+
+	public void setX(int x)
+	{
+		this.x = x;
+	}
+
+	public void setY(int y)
+	{
+		this.y = y;
+	}
 }

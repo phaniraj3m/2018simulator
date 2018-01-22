@@ -20,7 +20,8 @@ public class Board extends JPanel implements ActionListener {
 	private Image bgImage, redRobot;
 	
     private Timer timer;
-    private Craft craft1, craft2;
+    private Craft redCraft1, redCraft2, redCraft3;
+    private Craft blueCraft1, blueCraft2, blueCraft3;
     private final int DELAY = 10;
 
     public Board() {
@@ -36,8 +37,14 @@ public class Board extends JPanel implements ActionListener {
         setFocusable(true);
         setBackground(Color.BLACK);
 
-        craft1 = new Craft(".//2175Blue.jpg");
-        craft2 = new Craft(".//2175Red.jpg");
+        redCraft1 = new Craft(".//2175Red.jpg",180,80);
+        
+        redCraft2 = new Craft(".//2175Red.jpg",180,250);
+        redCraft3 = new Craft(".//2175Red.jpg",180,360);
+        
+        blueCraft1 = new Craft(".//2175Blue.jpg",980,75);
+        blueCraft2 = new Craft(".//2175Blue.jpg",980,160);
+        blueCraft3 = new Craft(".//2175Blue.jpg",980,380);
 
         // timer = new Timer(DELAY, this);
         //timer.start();        
@@ -58,28 +65,39 @@ public class Board extends JPanel implements ActionListener {
         Graphics2D g2d = (Graphics2D) g;
         
         g2d.drawImage(bgImage, 0,0, this);        
-        g2d.drawImage(craft1.getImage(), craft1.getX(), craft1.getY(), this);        
-        g2d.drawImage(craft2.getImage(), 600-craft1.getX(), 400-craft1.getY(), this);        
+        g2d.drawImage(blueCraft1.getImage(), blueCraft1.getX(), blueCraft1.getY(), this);        
+        g2d.drawImage(blueCraft2.getImage(), blueCraft2.getX(), blueCraft2.getY(), this);        
+        g2d.drawImage(blueCraft3.getImage(), blueCraft3.getX(), blueCraft3.getY(), this);        
+
+        g2d.drawImage(redCraft1.getImage(), redCraft1.getX(), redCraft1.getY(), this);        
+        g2d.drawImage(redCraft2.getImage(), redCraft2.getX(), redCraft2.getY(), this);        
+        g2d.drawImage(redCraft3.getImage(), redCraft3.getX(), redCraft3.getY(), this);        
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         
-        craft1.move();
-        craft2.move();
-        repaint();  
+    	blueCraft1.move();
+    	blueCraft2.move();
+    	blueCraft3.move();
+        
+    	redCraft1.move();
+    	redCraft2.move();
+    	redCraft3.move();
+        repaint();
+
     }
 
     private class TAdapter extends KeyAdapter {
 
         @Override
         public void keyReleased(KeyEvent e) {
-            craft1.keyReleased(e);
+        	blueCraft1.keyReleased(e);
         }
 
         @Override
         public void keyPressed(KeyEvent e) {
-            craft1.keyPressed(e);
+        	blueCraft1.keyPressed(e);
         }
     }
     

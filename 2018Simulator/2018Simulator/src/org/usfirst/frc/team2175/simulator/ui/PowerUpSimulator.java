@@ -48,13 +48,13 @@ public class PowerUpSimulator extends JFrame implements ActionListener
 		scorePanel = new ScorePanel();
 		ButtonPanel buttonPanel = new ButtonPanel(this);
 
-		add(blueVault, BorderLayout.WEST);
-		add(redVault, BorderLayout.EAST);
+		add(redVault, BorderLayout.WEST);
+		add(blueVault, BorderLayout.EAST);
 
 		add(buttonPanel, BorderLayout.SOUTH);
 		add(scorePanel, BorderLayout.NORTH);
 
-		setSize(1400, 800);
+		setSize(1400, 628);
 		setResizable(false);
 
 		setTitle("PowerUP");
