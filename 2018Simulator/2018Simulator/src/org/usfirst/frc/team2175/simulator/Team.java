@@ -30,18 +30,18 @@ public class Team
 	{
 		color = col;
 
-		if (col == Game.BLUE)
+		if (col == Game.RED)
 		{
 
-			robots[0] = new Robot(0.2 * fieldWidth, 0, this, 0);
-			robots[1] = new Robot(0.5 * fieldWidth, 0, this, 1);
-			robots[2] = new Robot(0.8 * fieldWidth, 0, this, 2);
+			robots[0] = new Robot(180.0,80.0, this, 0);
+			robots[1] = new Robot(180.0,250.0,this, 1);
+			robots[2] = new Robot(180,360, this, 2);
 		}
 		else
 		{
-			robots[0] = new Robot(0.2 * fieldWidth, fieldLength, this, 0);
-			robots[1] = new Robot(0.5 * fieldWidth, fieldLength, this, 1);
-			robots[2] = new Robot(0.8 * fieldWidth, fieldLength, this, 2);
+			robots[0] = new Robot(980, 75, this, 0);
+			robots[1] = new Robot(980, 160, this, 1);
+			robots[2] = new Robot(980, 380, this, 2);
 
 		}
 
@@ -73,21 +73,17 @@ public class Team
 
 	public void move(double gameTime)
 	{
-		if (gameTime < 16)
-		{
-			// auton mode
-
-		}
-		else
+		for (int i = 0; i < robots.length; i++)
 		{
 			
-			for (int i = 0; i < robots.length; i++)
-			{
-				
-				Robot robot = robots[i];
-				robot.move(gameTime);
-			}
+			Robot robot = robots[i];
+			robot.move(gameTime);
 		}
 		
+	}
+
+	public Robot[] getRobots()
+	{
+		return robots;
 	}
 }

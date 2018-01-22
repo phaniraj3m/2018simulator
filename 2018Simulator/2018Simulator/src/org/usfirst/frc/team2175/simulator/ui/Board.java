@@ -17,7 +17,7 @@ import javax.swing.Timer;
 
 public class Board extends JPanel implements ActionListener {
 
-	private Image bgImage, redRobot;
+	private Image bgImage;
 	
     private Timer timer;
     private Craft redCraft1, redCraft2, redCraft3;
@@ -104,5 +104,35 @@ public class Board extends JPanel implements ActionListener {
     
 	private Image loadImage(String fileName) {
 		return new ImageIcon(fileName).getImage();
+	}
+
+	public Craft getRedCraft1()
+	{
+		return redCraft1;
+	}
+
+	public Craft getRedCraft2()
+	{
+		return redCraft2;
+	}
+
+	public Craft getRedCraft3()
+	{
+		return redCraft3;
+	}
+
+	public Craft getBlueCraft1()
+	{
+		return blueCraft1;
+	}
+
+	public Craft getBlueCraft2()
+	{
+		return blueCraft2;
+	}
+
+	public Craft getBlueCraft3()
+	{
+		return blueCraft3;
 	}
 }

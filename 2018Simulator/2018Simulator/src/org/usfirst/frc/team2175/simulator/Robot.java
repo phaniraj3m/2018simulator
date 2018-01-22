@@ -4,12 +4,11 @@ import java.util.Random;
 
 public class Robot
 {
-	
+
 	Random r = new Random();
-	
-	Vault vault ;
-	
-	
+
+	Vault vault;
+
 	int number;
 
 	Team team;
@@ -26,68 +25,72 @@ public class Robot
 		this.color = team.color;
 		this.team = team;
 		vault = team.vault;
-		
+
 		auton();
 	}
 
 	private void auton()
 	{
-		team.score += 5 ; // assume all teams pass the line
+		team.score += 5; // assume all teams pass the line
 	}
 
-	
 	// define possible moves
-	
+
 	// returns the amount of time to fetch the cube
 	private double fetchCube()
 	{
 		return 0.0;
-		
+
 	}
-	
+
 	// returns the amount of time to drive that distance
 	private double drive(double distance)
 	{
 		return 0.0;
-		
+
 	}
 
-	// returns the amount of time to put the cube into the exchange - does not include driving time
+	// returns the amount of time to put the cube into the exchange - does not
+	// include driving time
 
 	private double depositCubeToExchange()
 	{
 		return 0.0;
-		
+
 	}
-	
-	// returns the amount of time to put the cube onto the Scale - does not include driving time
+
+	// returns the amount of time to put the cube onto the Scale - does not
+	// include driving time
 
 	private double placeCubeOnScale()
 	{
 		return 0.0;
-		
+
 	}
-	
-	// returns the amount of time to put the cube onto the switch - does not include driving time
+
+	// returns the amount of time to put the cube onto the switch - does not
+	// include driving time
 
 	private double placeCubeOnSwitch()
 	{
 		return 0.0;
 	}
-	
-	
+
 	private double playDefence(double duration)
 	{
 		return duration;
-		
+
 	}
-	
+
 	public void move(double gameTime)
 	{
 
 		if (gameTime < 16)
 		{
-			// auton mode
+			if (color == Game.BLUE)
+				x_position -= 6;
+			else
+				x_position += 6;
 
 		}
 		else
@@ -108,7 +111,6 @@ public class Robot
 					team.incrementScore(5);
 					team.incrementScore(30); // free climb
 					vault.setLevitatePlayed(true);
-					
 
 				}
 				else if (levitate != 0)
@@ -128,5 +130,15 @@ public class Robot
 			}
 		}
 
+	}
+
+	public double getX_position()
+	{
+		return x_position;
+	}
+
+	public double getY_position()
+	{
+		return y_position;
 	}
 }
