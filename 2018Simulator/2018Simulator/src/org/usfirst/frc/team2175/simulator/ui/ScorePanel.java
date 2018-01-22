@@ -11,9 +11,9 @@ public class ScorePanel extends JPanel
 
 	private final int SCREEN_SIZE = 200;
 
-	private final Font blueFont = new Font("Helvetica", Font.BOLD, 14);
+	private final Font scoreFont = new Font("Helvetica", Font.BOLD, 24);
 
-	private final Font redFont = new Font("Helvetica", Font.BOLD, 14);
+
 
 	JLabel redScore, blueScore, time;
 
@@ -21,10 +21,17 @@ public class ScorePanel extends JPanel
 	{
 		setBackground(new Color(255, 0, 255));
 		blueScore = new JLabel("Blue:" + 100);
+		blueScore.setForeground(Color.BLUE);
+		blueScore.setFont(scoreFont);
 		add(blueScore);
+		
 		time = new JLabel("Time:" + 0);
+		time.setFont(scoreFont);
 		add(time);
+		
 		redScore = new JLabel("Red:" + 200);
+		redScore.setFont(scoreFont);
+		redScore.setForeground(Color.RED);
 		add(redScore);
 
 	}
