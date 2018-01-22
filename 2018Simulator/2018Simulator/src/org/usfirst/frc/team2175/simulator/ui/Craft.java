@@ -4,88 +4,137 @@ import java.awt.Image;
 import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
 
-public class Craft {
+public class Craft
+{
 
-    private int dx;
-    private int dy;
-    private int x;
-    private int y;
-    private Image image;
-    
-    private String fileName;
+	private int dx;
+	private int dy;
+	private int x;
+	private int y;
+	private Image image;
 
-    public Craft(String f, int x_init, int y_init) {
-        
-        initCraft(f,x_init,y_init);
-    }
-    
-    private void initCraft(String f, int x_init, int y_init) {
-        
-        ImageIcon ii = new ImageIcon(f);
-        image = ii.getImage();
-        x = x_init;
-        y = y_init;        
-    }
+	private String fileName;
 
+	public Craft(String f, int x_init, int y_init)
+	{
 
-    public void move() {
-        x += dx;
-        y += dy;
-    }
+		initCraft(f, x_init, y_init);
+	}
 
-    public int getX() {
-        return x;
-    }
+	private void initCraft(String f, int x_init, int y_init)
+	{
 
-    public int getY() {
-        return y;
-    }
+		ImageIcon ii = new ImageIcon(f);
+		image = ii.getImage();
+		x = x_init;
+		y = y_init;
+	}
 
-    public Image getImage() {
-        return image;
-    }
+	public void move()
+	{
+		x += dx;
+		y += dy;
+	}
 
-    public void keyPressed(KeyEvent e) {
+	public int getX()
+	{
+		return x;
+	}
 
-        int key = e.getKeyCode();
+	public int getY()
+	{
+		return y;
+	}
 
-        if (key == KeyEvent.VK_LEFT) {
-            dx = -1;
-        }
+	public Image getImage()
+	{
+		return image;
+	}
 
-        if (key == KeyEvent.VK_RIGHT) {
-            dx = 1;
-        }
+	public void keyPressed(KeyEvent e)
+	{
 
-        if (key == KeyEvent.VK_UP) {
-            dy = -1;
-        }
+		int key = e.getKeyCode();
 
-        if (key == KeyEvent.VK_DOWN) {
-            dy = 1;
-        }
-    }
+		if (key == KeyEvent.VK_LEFT)
+		{
+			dx = -1;
+		}
 
-    public void keyReleased(KeyEvent e) {
-        
-        int key = e.getKeyCode();
+		if (key == KeyEvent.VK_RIGHT)
+		{
+			dx = 1;
+		}
 
-        if (key == KeyEvent.VK_LEFT) {
-            dx = 0;
-        }
+		if (key == KeyEvent.VK_UP)
+		{
+			dy = -1;
+		}
 
-        if (key == KeyEvent.VK_RIGHT) {
-            dx = 0;
-        }
+		if (key == KeyEvent.VK_DOWN)
+		{
+			dy = 1;
+		}
+		if (key == KeyEvent.VK_PAGE_DOWN)
+		{
+			dy = 5;
+		}
+		if (key == KeyEvent.VK_PAGE_UP)
+		{
+			dy = -5;
+		}
+		if (key == KeyEvent.VK_HOME)
+		{
+			dx = 5;
+		}
+		if (key == KeyEvent.VK_END)
+		{
+			dx = -5;
+		}
 
-        if (key == KeyEvent.VK_UP) {
-            dy = 0;
-        }
+	}
 
-        if (key == KeyEvent.VK_DOWN) {
-            dy = 0;
-        }
-    }
+	public void keyReleased(KeyEvent e)
+	{
+
+		int key = e.getKeyCode();
+
+		if (key == KeyEvent.VK_LEFT)
+		{
+			dx = 0;
+		}
+
+		if (key == KeyEvent.VK_RIGHT)
+		{
+			dx = 0;
+		}
+
+		if (key == KeyEvent.VK_UP)
+		{
+			dy = 0;
+		}
+
+		if (key == KeyEvent.VK_DOWN)
+		{
+			dy = 0;
+		}
+		if (key == KeyEvent.VK_PAGE_DOWN)
+		{
+			dy = 0;
+		}
+		if (key == KeyEvent.VK_PAGE_UP)
+		{
+			dy = 0;
+		}
+		if (key == KeyEvent.VK_HOME)
+		{
+			dx = 0;
+		}
+		if (key == KeyEvent.VK_END)
+		{
+			dx = 0;
+		}
+	}
 
 	public void setX(int x)
 	{

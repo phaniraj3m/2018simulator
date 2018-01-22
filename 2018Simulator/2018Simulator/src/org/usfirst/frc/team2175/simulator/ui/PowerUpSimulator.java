@@ -85,11 +85,11 @@ public class PowerUpSimulator extends JFrame implements ActionListener
 	public void actionPerformed(ActionEvent arg0)
 	{
 		// System.out.println(time);
-
 		if (game == null)
 		{
 			game = new Game();
 		}
+		board.actionPerformed(arg0);
 
 		if (!start)
 			return;
@@ -100,6 +100,7 @@ public class PowerUpSimulator extends JFrame implements ActionListener
 			game.onTick(time);
 
 			update();
+			
 
 			board.repaint();
 		}
