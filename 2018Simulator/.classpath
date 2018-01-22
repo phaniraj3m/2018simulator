@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="2018Simulator/src"/>
+	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="C:/sfdc_workspace/lib/junit-4.12.jar"/>
 	<classpathentry kind="lib" path="C:/sfdc_workspace/lib/hamcrest-core-1.3.jar"/>
