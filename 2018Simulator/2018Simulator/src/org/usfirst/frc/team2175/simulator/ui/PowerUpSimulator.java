@@ -13,19 +13,19 @@ import org.usfirst.frc.team2175.simulator.Game;
 public class PowerUpSimulator extends JFrame implements ActionListener
 {
 
-	
-	Game game ; 
-	ScorePanel scorePanel ;
-	
+	Game game;
+	ScorePanel scorePanel;
+
 	double time = 0.0;
+	
+	int increment = 100; // milliseconds
+
 	public PowerUpSimulator()
 	{
 
 		initUI();
-		
-		game = new Game();
-		game.start();
-		
+
+		// game.start();
 
 	}
 
@@ -55,8 +55,8 @@ public class PowerUpSimulator extends JFrame implements ActionListener
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		Timer timer = new Timer(10, this);
-		timer.setInitialDelay(10);
+		Timer timer = new Timer(increment, this);
+		timer.setInitialDelay(5000);
 		timer.start();
 	}
 
@@ -78,13 +78,21 @@ public class PowerUpSimulator extends JFrame implements ActionListener
 	public void actionPerformed(ActionEvent arg0)
 	{
 		//System.out.println(time);
-		time++;
+
+		if (game == null)
+		{
+			game = new Game();
+		}
 		
-		scorePanel.updateTime(time);
-		
-		scorePanel.updateScores(game.getScores());
-		
-		
+		if ( time < 150)
+		{
+			time+= (1.0*increment)/1000.0;
+			game.onTick(time);
+
+			scorePanel.updateTime(time);
+
+			scorePanel.updateScores(game.getScores());			
+		}
 		
 	}
 }

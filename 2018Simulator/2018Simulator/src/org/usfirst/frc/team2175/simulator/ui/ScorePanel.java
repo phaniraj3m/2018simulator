@@ -20,7 +20,7 @@ public class ScorePanel extends JPanel
 	public ScorePanel()
 	{
 		setBackground(new Color(255, 0, 255));
-		blueScore = new JLabel("Blue:" + 100);
+		blueScore = new JLabel("Blue:" + 0);
 		blueScore.setForeground(Color.BLUE);
 		blueScore.setFont(scoreFont);
 		add(blueScore);
@@ -29,7 +29,7 @@ public class ScorePanel extends JPanel
 		time.setFont(scoreFont);
 		add(time);
 		
-		redScore = new JLabel("Red:" + 200);
+		redScore = new JLabel("Red:" + 0);
 		redScore.setFont(scoreFont);
 		redScore.setForeground(Color.RED);
 		add(redScore);
@@ -38,7 +38,9 @@ public class ScorePanel extends JPanel
 
 	public void updateTime(double newTime)
 	{
-		time.setText("Time" + newTime);
+		newTime = Math.round(100*newTime)/100;
+		
+		time.setText("Time " + newTime);
 		time.repaint();
 		
 	}

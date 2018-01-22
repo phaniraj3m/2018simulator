@@ -32,7 +32,7 @@ public class Game extends Thread
 	
 
 
-	int time = 0;
+	double time = 0;
 	
 	
 	public Game()
@@ -46,24 +46,30 @@ public class Game extends Thread
 	public void run()
 	{
 
-		System.out.println("Time\tBlue\tRed\tScale\tBlueSwitch\tRedSwitch\tBlueVault\tRedVault");
 
 		
 		// this is the tick every second
 		do
 		{
 			time++;
-			redTeam.move(time);
-			blueTeam.move(time);
-			updateScores();
-			System.out.print(time+ "\t" + blueTeam.score + "\t" + redTeam.score + "\t");
-			System.out.print(COLORS[scale.owner] + "\t" + COLORS[blueSwitch.owner] + "\t" + COLORS[redSwitch.owner]);
-			System.out.println("\t" + blueTeam.getVaultScore() + "\t" +  redTeam.getVaultScore());
+			onTick(time);
 			
 		}
 		while (time <150);
 		completeGame();
 
+	}
+
+	public void onTick(double gameTime)
+	{
+		time = gameTime;
+		
+		redTeam.move(gameTime);
+		blueTeam.move(gameTime);
+		updateScores();
+		System.out.print(time+ "\t" + blueTeam.score + "\t" + redTeam.score + "\t");
+		System.out.print(COLORS[scale.owner] + "\t" + COLORS[blueSwitch.owner] + "\t" + COLORS[redSwitch.owner]);
+		System.out.println("\t" + blueTeam.getVaultScore() + "\t" +  redTeam.getVaultScore());
 	}
 	
 	private void completeGame()
@@ -94,6 +100,9 @@ public class Game extends Thread
 		
 		blueSwitch = new Switch(BLUE);
 		redSwitch = new Switch(RED);
+
+		System.out.println("Time\tBlue\tRed\tScale\tBlueSwitch\tRedSwitch\tBlueVault\tRedVault");
+
 	}
 	
 	private void updateScores()

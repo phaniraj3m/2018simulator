@@ -82,10 +82,10 @@ public class Robot
 		
 	}
 	
-	public void move(int time)
+	public void move(double gameTime)
 	{
 
-		if (time < 16)
+		if (gameTime < 16)
 		{
 			// auton mode
 
