@@ -37,14 +37,14 @@ public class Board extends JPanel implements ActionListener {
         setFocusable(true);
         setBackground(Color.BLACK);
 
-        redCraft1 = new Craft(".//2175Red.jpg",180,80);
+        redCraft1 = new Craft(".//RedWithCube.jpg",180,80);
         
-        redCraft2 = new Craft(".//2175Red.jpg",180,250);
-        redCraft3 = new Craft(".//2175Red.jpg",180,360);
+        redCraft2 = new Craft(".//RedWithCube.jpg",180,250);
+        redCraft3 = new Craft(".//RedWithCube.jpg",180,360);
         
-        blueCraft1 = new Craft(".//2175Blue.jpg",980,75);
-        blueCraft2 = new Craft(".//2175Blue.jpg",980,160);
-        blueCraft3 = new Craft(".//2175Blue.jpg",980,380);
+        blueCraft1 = new Craft(".//BlueWithCube.jpg",980,75);
+        blueCraft2 = new Craft(".//BlueWithCube.jpg",980,160);
+        blueCraft3 = new Craft(".//BlueWithCube.jpg",980,380);
 
         // timer = new Timer(DELAY, this);
         //timer.start();        
