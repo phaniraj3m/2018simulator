@@ -4,7 +4,7 @@ public class Vertex
 {
 	final private String id;
 	final private String name, description;
-	double x, y; // this is the center
+	double x, y; // this is the bottom left corner
 	double x_width, y_height;
 
 	public Vertex(String id, String name, String description, double x, double y,double x_width, double y_height)

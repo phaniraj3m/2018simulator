@@ -1,4 +1,4 @@
-package org.usfirst.frc.team2175.simulator.distance.test;
+package org.usfirst.frc.team2175.simulator.distance;
 
 import java.awt.Color;
 import java.io.FileNotFoundException;
@@ -11,10 +11,7 @@ import java.util.List;
 
 import org.usfirst.frc.team2168.robot.FalconLinePlot;
 import org.usfirst.frc.team2168.robot.FalconPathPlanner;
-import org.usfirst.frc.team2175.simulator.distance.DijkstraAlgorithm;
-import org.usfirst.frc.team2175.simulator.distance.Edge;
-import org.usfirst.frc.team2175.simulator.distance.Graph;
-import org.usfirst.frc.team2175.simulator.distance.Vertex;
+import org.usfirst.frc.team2175.simulator.Game;
 
 import com.csvreader.CsvReader;
 
@@ -31,12 +28,147 @@ public class Movements
 
 	private HashMap<String, Vertex> redMap = new HashMap<String, Vertex>(), blueMap = new HashMap<String, Vertex>();
 
+	DijkstraAlgorithm redDijkstra, blueDijkstra;
+	
+	private static Movements m_instance;
+	
 	public static void main(String[] args)
 	{
-		new Movements();
+		Movements m = new Movements();
+		
+		double  [][] redpath = null;
+		double  [][] bluepath = null;
+		
+		double [] start = new double [] {267,28};
+		double [] end = new double [] {363,28};
+
+		
+		bluepath = m.getPath(start[0],start[1],end[0],end[1], Game.BLUE);
+		m.display(bluepath, false, start,end);
+		
+		start = new double [] {265,300};
+		end = new double [] {361,300};
+		
+		redpath = m.getPath(start[0],start[1],end[0],end[1], Game.RED);
+		
+		m.display(redpath, true, start,end);
+		
+		
+		start = new double [] {28,28};
+		end = new double [] {561,300};
+		
+		redpath = m.getPath(start[0],start[1],end[0],end[1], Game.RED);
+		m.display(redpath, true, start,end);
+		bluepath = m.getPath(start[0],start[1],end[0],end[1], Game.BLUE);
+		
+		m.display(bluepath, false, start,end);
+		
+		
+		
+		
+	
 
 	}
+	
+	public static Movements getInstance()
+	{
+		if (m_instance == null)
+		{
+			m_instance = new Movements();
+		}
+		return m_instance;		
+		
+	}
+	
+	// this is the main public interface
+	
+	public synchronized double [][] getPath(double x_start, double y_start, double x_target, double y_target, int teamColor)
+	{
+		
+		// find zone in which the robot is
+		
+		List<Vertex> nodeList = redNodes;
+		DijkstraAlgorithm dijsktra = redDijkstra;
+		if ( teamColor == Game.BLUE)
+		{
+			nodeList = blueNodes;
+			dijsktra = blueDijkstra;
+		}
+		
+		Vertex [] v = findZone(nodeList,x_start, y_start, x_target, y_target);
+		
+		if (v[0] == null || v[1] == null)
+			return null; // no path
+		
+		if ( v[0].equals(v[1]))
+		{
+			return new double[][] {new double[] {x_start,y_start},new double[] {x_target,y_target}};
+		}
+		
+		dijsktra.execute(v[0]);		
+		LinkedList<Vertex> path = dijsktra.getPath(v[1]);
+		
+		int size = path.size();
+		
+		double[][] waypoints = new double[size][2];
+		// waypoints[0] = new double[] { start.getX(), start.getY() };
+		int j = 0;
+		for (Vertex vertex : path)
+		{
+			if (vertex != null)
+			{
+				waypoints[j] = new double[] { vertex.getX(), vertex.getY() };
+				j++;
+			}
+		}
+		
+		double totalTime = 15; // seconds
+		double timeStep = 0.1; // period of control loop on Rio, seconds
+		double robotTrackWidth = 2; // distance between left and right
+									// wheels, feet
 
+		FalconPathPlanner planner = new FalconPathPlanner(waypoints);
+		planner.calculate(totalTime, timeStep, robotTrackWidth);
+
+		
+		return planner.smoothPath;
+	}
+
+	private Vertex [] findZone(List<Vertex> nodeList, double x_start, double y_start, double x_target, double y_target)
+	{
+		// find the vertex in which the co-ordinates lie
+		
+		Vertex [] v = new Vertex[2]; 
+		int found = 0 ;
+		int i = 0 ;
+		
+		for (Iterator iterator = nodeList.iterator(); iterator.hasNext();)
+		{
+			Vertex vertex = (Vertex) iterator.next();
+			
+			double x1 = vertex.getX();
+			double x2 = vertex.getX() + vertex.getX_width();
+			double y1 = vertex.getY();
+			double y2 = vertex.getY() + vertex.getY_height();
+			
+			if ( x_start > x1 && x_start <= x2 && y_start > y1 && y_start <= y2)
+			{
+				v[0] = vertex;
+				found++;
+			}
+			
+			if ( x_target > x1 && x_target <= x2 && y_target > y1 && y_target <= y2)
+			{
+				v[1] = vertex;
+				found++;
+			}
+			i++;
+			if (found == 2) break;
+			
+		}
+		
+		return v;
+	}
 	private Movements()
 	{
 		// load vertices
@@ -52,13 +184,13 @@ public class Movements
 			loadEdges(blueEdges, blueMap, blueEdgeMap);
 
 			Graph redGraph = new Graph(redNodes, redEdges);
-			DijkstraAlgorithm redDijkstra = new DijkstraAlgorithm(redGraph);
+			redDijkstra = new DijkstraAlgorithm(redGraph);
 
 			Graph blueGraph = new Graph(blueNodes, blueEdges);
-			DijkstraAlgorithm blueDijkstra = new DijkstraAlgorithm(blueGraph);
+			blueDijkstra = new DijkstraAlgorithm(blueGraph);
 
-			getPaths(redNodes.get(0), redNodes, redDijkstra,true);
-			getPaths(blueNodes.get(0), blueNodes, blueDijkstra,false);
+			// getPaths(redNodes.get(0), redNodes, redDijkstra,true);
+			// getPaths(blueNodes.get(0), blueNodes, blueDijkstra,false);
 
 			/*
 			 * dijkstra.execute(redNodes.get(0)); LinkedList<Vertex> path =
@@ -85,7 +217,7 @@ public class Movements
 	private void getPaths(Vertex start, List<Vertex> nodes, DijkstraAlgorithm dijkstra, boolean redMode)
 	{
 		dijkstra.execute(start);
-		for (int i = nodes.size()-4; i < nodes.size(); i++)
+		for (int i = nodes.size() - 4; i < nodes.size(); i++)
 		{
 			Vertex end = nodes.get(i);
 			if (!start.equals(end))
@@ -135,35 +267,38 @@ public class Movements
 
 				FalconPathPlanner planner = new FalconPathPlanner(waypoints);
 				planner.calculate(totalTime, timeStep, robotTrackWidth);
-
-				Color c = Color.red;
-				if ( !redMode)
-					c = Color.blue;
 				
-				FalconLinePlot fig1 = new FalconLinePlot(planner.smoothPath, c, Color.green);
-				fig1.yGridOn();
-				fig1.xGridOn();
-				fig1.setYLabel("Y (inches)");
-				fig1.setXLabel("X (inches)");
-				if (redMode)
-				{
-					fig1.setTitle("Red Trajectory from " + start.getId() + " to " + end.getId());
-				}
-				else
-				{
-					fig1.setTitle("Blue Trajectory from " + start.getId() + " to " + end.getId());
-					
-				}
+				display(planner.smoothPath, redMode, new double [] {start.getX(),start.getY()}, new double [] {end.getX(),end.getY()});
 
-				// force graph to show 1/2 field dimensions of 24ft x 27 feet
-				//fig1.setXTic(0, 684, 1);
-				//fig1.setYTic(0, 324, 1);
-				//fig1.addData(planner.smoothPath, Color.red, Color.blue);
 
 			}
 
 		}
 
+	}
+	
+	private void display(double [][] smoothPath, boolean redMode, double[] start, double[] end)
+	{
+		Color c = Color.red;
+		if (!redMode)
+			c = Color.blue;
+		
+		FalconLinePlot fig1 = new FalconLinePlot(smoothPath, c, c);
+		fig1.yGridOn();
+		fig1.xGridOn();
+		fig1.setYLabel("Y (inches)");
+		fig1.setXLabel("X (inches)");
+		fig1.setXTic(0, 640, 40);
+		fig1.setYTic(0, 340, 30);
+		if (redMode)
+		{
+			fig1.setTitle("Red Trajectory from (" + start[0] + "," + start[1] + ") to (" + end[0] + "," + end[1] + ")");
+		}
+		else
+		{
+			fig1.setTitle("Blue Trajectory from (" + start[0] + "," + start[1] + ") to (" + end[0] + "," + end[1] + ")");
+
+		}
 	}
 
 	private void loadVertices(String s, HashMap<String, Vertex> vertices, List<Vertex> nodes,

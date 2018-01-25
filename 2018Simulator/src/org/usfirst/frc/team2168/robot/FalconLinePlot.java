@@ -366,6 +366,12 @@ public class FalconLinePlot extends JPanel implements ClipboardOwner{
      */
     private void getMinMax(LinkedList<xyNode> list)
     {
+    	if ( false)
+    	{
+    		xMax = 640;
+    		yMax = 330;
+    		return;
+    	}
     	for(xyNode node: list)
     	{
     		double tempYMax = getMax(node.y);

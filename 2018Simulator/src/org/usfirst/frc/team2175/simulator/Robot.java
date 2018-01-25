@@ -96,7 +96,12 @@ public class Robot
 		else
 		{
 			// add to vault once in a while
-
+			if ( number == 0 && color == Game.RED)
+			{
+				// try moving robot red 0
+				
+				
+			}
 			int vaultScore = r.nextInt(1000);
 
 			// above 997 - levitate
