@@ -1,8 +1,13 @@
 package org.usfirst.frc.team2175.simulator.distance;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import org.usfirst.frc.team2175.simulator.Game;
+
+import com.csvreader.CsvWriter;
 
 public class FieldGenerator
 {
@@ -12,8 +17,9 @@ public class FieldGenerator
 
 	private ArrayList<Vertex> redVertices = new ArrayList<Vertex>();
 	private ArrayList<Vertex> blueVertices = new ArrayList<Vertex>();
-	private ArrayList<Edge> blueEdges = new ArrayList<Edge>();
-	private ArrayList<Edge> redEdges = new ArrayList<Edge>();
+	
+	int incr = 18;
+	
 
 
 	int FIELD_WIDTH = 288 + 72 + 288;
@@ -27,24 +33,63 @@ public class FieldGenerator
 
 	private FieldGenerator()
 	{
-		generateVertices();
+		try
+		{
+			generateVertices();
+			saveVertices();
+		}
+		catch (Exception e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	private void saveVertices() throws Exception
+	{
+		
+		BufferedWriter redWriter = new BufferedWriter(new FileWriter("C:\\frc2175\\2018simulator\\redVertices.csv"));
+		BufferedWriter blueWriter = new BufferedWriter(new FileWriter("C:\\frc2175\\2018simulator\\blueVertices.csv"));
+		
+		String line = "﻿Vertex Number,Vertex Name,Vertex X,Vertex Y,Description";
+		redWriter.write(line);redWriter.newLine();
+		blueWriter.write(line);blueWriter.newLine();
+		
+		for (Iterator iterator = redVertices.iterator(); iterator.hasNext();)
+		{
+			Vertex vertex = (Vertex) iterator.next();
+			redWriter.write(vertex.toString());
+			redWriter.newLine();
+		}
+		for (Iterator iterator = blueVertices.iterator(); iterator.hasNext();)
+		{
+			Vertex vertex = (Vertex) iterator.next();
+			blueWriter.write(vertex.toString());
+			blueWriter.newLine();
+		}
+		
+		redWriter.close();
+		blueWriter.close();
+		
+		
+		
 	}
 
 	private void generateVertices()
 	{
-		for (int x = 0; x <= FIELD_WIDTH; x += 2)
+		for (int x = 0; x <= FIELD_WIDTH; x += incr)
 		{
-			for (int y = 0; y <= FIELD_HEIGHT; y += 2)
+			for (int y = 0; y <= FIELD_HEIGHT; y += incr)
 			{
-				processSquare(x, y);
-
+				Vertex v = processSquare(x, y);
 			}
-
 		}
+		
+		
 
 	}
 
-	private void processSquare(int x, int y)
+	private Vertex processSquare(int x, int y)
 	{
 
 		boolean isSwitch = isSwitch(x, y);
@@ -58,24 +103,44 @@ public class FieldGenerator
 		
 		if ( isNull == Game.RED)
 		{
-			System.out.println("Red Null " + x  + "," + y);
+			//System.out.println("Red Null " + x  + "," + y);
 		}
 		else if ( isNull == Game.BLUE)
 		{
-			System.out.println("Blue Null " + x  + "," + y);
+			//System.out.println("Blue Null " + x  + "," + y);
 		}
 		
 		if (isSwitch || isScale || isCorner)
 		{
 			// this is not a vertex, the square is occupied by an object
-			return;
+			return null;
 		}
 		
 		// depending on the values of the 3 integers, this is a possible vertex for 1 or both robots
 		// so it will be added to the appropriate vertex list(s), and to appropriate edge list(s) 
 		
 		String label = "V_" + x + "_" + y;
-		//System.out.println(label);
+		
+		Vertex v = new Vertex(label, label, label, x, y,0,0); // width and height are fake, since this code isnt used
+		
+		// now decide which list to add to
+		
+		if (isNull == Game.RED || isPowerCubeZone == Game.RED ||isPlatformZone == Game.RED )
+		{
+			redVertices.add(v);
+		}
+		else if (isNull == Game.BLUE || isPowerCubeZone == Game.BLUE ||isPlatformZone == Game.BLUE )
+		{
+			blueVertices.add(v);
+		}
+		else
+		{
+			// neither a red or blue restricted one
+			blueVertices.add(v);
+			redVertices.add(v);
+		}
+		
+		return v;
 	}
 
 	private int isPlatformZone(int x, int y)

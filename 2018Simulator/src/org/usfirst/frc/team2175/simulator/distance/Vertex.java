@@ -4,19 +4,23 @@ public class Vertex
 {
 	final private String id;
 	final private String name, description;
-	double x, y;
+	double x, y; // this is the center
+	double x_width, y_height;
 
-	public Vertex(String id, String name, String description, double x, double y)
+	public Vertex(String id, String name, String description, double x, double y,double x_width, double y_height)
 	{
 		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.x = x;
 		this.y = y;
+		this.x_width = x_width;
+		this.y_height = y_height;
+		
 	}
 	public Vertex(String id, String name)
 	{
-		this(id, name, name, 0, 0);
+		this(id, name, name, 0, 0,0,0);
 	}
 
 	public String getId()
@@ -61,7 +65,23 @@ public class Vertex
 	@Override
 	public String toString()
 	{
-		return name;
+		return id + "," +   name+ ","  +  x + "," +  y + "," +  description;
+	}
+	public double getX()
+	{
+		return x;
+	}
+	public double getY()
+	{
+		return y;
+	}
+	public double getX_width()
+	{
+		return x_width;
+	}
+	public double getY_height()
+	{
+		return y_height;
 	}
 
 }

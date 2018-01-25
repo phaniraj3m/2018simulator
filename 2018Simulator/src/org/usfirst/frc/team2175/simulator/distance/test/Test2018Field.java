@@ -62,7 +62,7 @@ public class Test2018Field
 
     private void addLane(String laneId, int sourceLocNo, int destLocNo,
             int duration) {
-        Edge lane = new Edge(laneId,nodes.get(sourceLocNo), nodes.get(destLocNo), duration );
+        Edge lane = new Edge(laneId,nodes.get(sourceLocNo), nodes.get(destLocNo), duration,false );
         edges.add(lane);
     }
 }

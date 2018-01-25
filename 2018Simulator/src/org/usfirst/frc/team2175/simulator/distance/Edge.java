@@ -6,15 +6,18 @@ public class Edge  {
     private final Vertex destination;
     private double weight;
 
-    public Edge(String id, Vertex source, Vertex destination, double weight) {
+    private boolean onPlatform = false;
+    
+    public Edge(String id, Vertex source, Vertex destination, double weight, boolean onPlatform) {
         this.id = id;
         this.source = source;
         this.destination = destination;
         this.weight = weight;
+        this.onPlatform = onPlatform;
     }
 
     
-    public Edge(String id, Vertex source, Vertex destination) {
+    public Edge(String id, Vertex source, Vertex destination,boolean onPlatform) {
         this.id = id;
         this.source = source;
         this.destination = destination;
@@ -22,6 +25,9 @@ public class Edge  {
         weight = Math.pow(source.x - destination.x,2) + 
         		Math.pow(source.y - destination.y,2);
         weight = Math.sqrt(weight);
+        
+        if (onPlatform)
+        	weight = 2 * weight;
     
     }
     public String getId() {
