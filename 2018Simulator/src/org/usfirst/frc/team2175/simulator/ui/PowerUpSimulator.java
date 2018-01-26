@@ -25,7 +25,7 @@ public class PowerUpSimulator extends JFrame implements ActionListener
 
 	int increment = 100; // 100 milliseconds = real speed
 
-	double multiplier = 15;
+	double multiplier = 5;
 
 	public PowerUpSimulator()
 	{

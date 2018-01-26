@@ -54,8 +54,8 @@ public class Movements
 		m.display(redpath, true, start,end);
 		
 		
-		start = new double [] {28,28};
-		end = new double [] {561,300};
+		start = new double [] {43.2, 294.54545454545456};
+		end = new double [] {600,40};
 		
 		redpath = m.getPath(start[0],start[1],end[0],end[1], Game.RED);
 		m.display(redpath, true, start,end);
@@ -122,6 +122,13 @@ public class Movements
 			}
 		}
 		
+		waypoints[0][0] = x_start;
+		waypoints[0][1] = y_start;
+
+		waypoints[waypoints.length-1][0] = x_target;
+		waypoints[waypoints.length-1][1] = y_target;
+		
+		
 		double totalTime = 15; // seconds
 		double timeStep = 0.1; // period of control loop on Rio, seconds
 		double robotTrackWidth = 2; // distance between left and right
@@ -134,7 +141,7 @@ public class Movements
 		return planner.smoothPath;
 	}
 
-	private Vertex [] findZone(List<Vertex> nodeList, double x_start, double y_start, double x_target, double y_target)
+	public Vertex [] findZone(List<Vertex> nodeList, double x_start, double y_start, double x_target, double y_target)
 	{
 		// find the vertex in which the co-ordinates lie
 		
@@ -425,5 +432,13 @@ public class Movements
 			}
 		}
 
+	}
+	public List<Vertex> getBlueNodes()
+	{
+		return blueNodes;
+	}	
+	public List<Vertex> getRedNodes()
+	{
+		return redNodes;
 	}
 }

@@ -2,6 +2,9 @@ package org.usfirst.frc.team2175.simulator;
 
 import java.util.Random;
 
+import org.usfirst.frc.team2175.simulator.distance.Movements;
+import org.usfirst.frc.team2175.simulator.distance.Vertex;
+
 public class Robot
 {
 
@@ -22,6 +25,7 @@ public class Robot
 		x_position = x;
 		y_position = y;
 		speed = 0;
+		this.number = number;
 		this.color = team.color;
 		this.team = team;
 		vault = team.vault;
@@ -88,19 +92,52 @@ public class Robot
 		if (gameTime < 16)
 		{
 			if (color == Game.BLUE)
-				x_position -= 6;
+				x_position -= (3 + number);
 			else
-				x_position += 6;
+				x_position += (3 - number);
 
 		}
 		else
 		{
 			// add to vault once in a while
-			if ( number == 0 && color == Game.RED)
+			if (number == 0 && color == Game.RED)
 			{
 				// try moving robot red 0
-				
-				
+
+				// target = 600,40
+
+				Movements m = Movements.getInstance();
+				double[] trans = convertPixelsToInches(x_position, y_position);
+				double path[][] = m.getPath(trans[0], trans[1], 600, 40, color);
+				//System.out.println("initial pixel " + x_position + ":" + y_position);
+				//System.out.println("initial inch " + trans[0] + ":" + trans[1]);
+
+				int div = 1000;
+
+				if (path != null)
+				{
+					for (int i = 0; i < 100; i++)
+					{
+						int off = (path.length/12+i+path.length / div) %path.length;
+						double x_targ = path[off][0];
+						double y_targ = path[off][1];
+						Vertex[] v = m.findZone(m.getRedNodes(), x_targ, y_targ, 30, 30);
+						if (v[0] != null)
+						{
+							trans = convertInchesToPixels(x_targ,y_targ);
+
+							x_position = trans[0];
+							y_position = trans[1];
+					//		System.out.println(
+					//				"next inch " + x_targ + ":" + y_targ);
+					//		System.out.println(gameTime + 
+					//				" next pixel " + x_position + ":" + y_position);
+							break;
+						}
+					}
+
+				}
+
 			}
 			int vaultScore = r.nextInt(1000);
 
@@ -145,5 +182,15 @@ public class Robot
 	public double getY_position()
 	{
 		return y_position;
+	}
+
+	public double[] convertPixelsToInches(double x, double y)
+	{
+		return new double[] { 648 * (x - 180) / 900, 324 - (y - 40) * 324 / 440 };
+	}
+
+	public double[] convertInchesToPixels(double x, double y)
+	{
+		return new double[] { 900 * x / 648.0 + 180, 40 - 440 * (y - 324) / 324.0 };
 	}
 }
