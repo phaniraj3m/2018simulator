@@ -23,9 +23,9 @@ public class PowerUpSimulator extends JFrame implements ActionListener
 
 	double time = 0.0;
 
-	int increment = 100; // 100 milliseconds = real speed
+	int increment = 10; // 10 milliseconds = tick between clock updates of the screen
 
-	double multiplier = 5;
+	double multiplier = 10; // so the game time increments in steps of  multiplier * increment
 
 	public PowerUpSimulator()
 	{
