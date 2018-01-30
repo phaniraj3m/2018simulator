@@ -85,13 +85,13 @@ public class Team
 		score += amount;
 	}
 
-	public void move(double gameTime)
+	public void move(double gameTime, double incr)
 	{
 		for (int i = 0; i < robots.length; i++)
 		{
 			
 			Robot robot = robots[i];
-			robot.move(gameTime);
+			robot.move(gameTime,incr);
 		}
 		
 	}

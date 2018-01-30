@@ -21,6 +21,9 @@ public class Game extends Thread
 	 * 
 	 */
 	public static final int BLUE = 1, RED = 2;
+
+	public static double incr = 0.1; // in seconds
+
 	private String[] COLORS = new String[] { "None", "Blue", "Red" };
 
 	Team blueTeam, redTeam;
@@ -48,8 +51,8 @@ public class Game extends Thread
 		// this is the tick every second
 		do
 		{
-			time++;
-			onTick(time);
+			time += incr;
+			onTick(time, incr);
 
 		}
 		while (time < 150);
@@ -57,13 +60,17 @@ public class Game extends Thread
 
 	}
 
-	public void onTick(double gameTime)
+	public void onTick(double gameTime, double incr)
 	{
 		time = gameTime;
 
-		redTeam.move(gameTime);
-		blueTeam.move(gameTime);
-		updateScores();
+		redTeam.move(gameTime,incr);
+		blueTeam.move(gameTime,incr);
+		if( (1*time)%10 == 0 )
+		{
+			updateScores();
+
+	}
 		if (LOG)
 		{
 			System.out.print(time + "\t" + blueTeam.score + "\t" + redTeam.score + "\t");
@@ -87,7 +94,7 @@ public class Game extends Thread
 
 		System.out.println(s);
 		return s;
-		
+
 		// System.out.println("Red score = " + redTeam.score);
 		// System.exit(0);
 	}
@@ -103,7 +110,8 @@ public class Game extends Thread
 		blueSwitch = new Switch(BLUE);
 		redSwitch = new Switch(RED);
 
-		if (LOG) System.out.println("Time\tBlue\tRed\tScale\tBlueSwitch\tRedSwitch\tBlueVault\tRedVault");
+		if (LOG)
+			System.out.println("Time\tBlue\tRed\tScale\tBlueSwitch\tRedSwitch\tBlueVault\tRedVault");
 
 	}
 

@@ -1,6 +1,7 @@
 package org.usfirst.frc.team2175.simulator.ui;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -31,6 +32,11 @@ public class Board extends JPanel implements ActionListener {
     
     private void initBoard() {
         
+    	Dimension d = new Dimension(900,440);
+    	setSize(d);
+    	setPreferredSize(d);
+    	setMinimumSize(d);
+    	setMaximumSize(d);
     	bgImage = loadImage(".//2018Field.jpg");
     	
         addKeyListener(new TAdapter());

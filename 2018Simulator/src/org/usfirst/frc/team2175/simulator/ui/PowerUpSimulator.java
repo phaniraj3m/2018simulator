@@ -23,7 +23,7 @@ public class PowerUpSimulator extends JFrame implements ActionListener
 
 	double time = 0.0;
 
-	int increment = 10; // 10 milliseconds = tick between clock updates of the screen
+	int  increment = (int)(Game.incr * 1000) ; // 100 milliseconds = tick between clock updates of the screen
 
 	double multiplier = 10; // so the game time increments in steps of  multiplier * increment
 
@@ -55,7 +55,7 @@ public class PowerUpSimulator extends JFrame implements ActionListener
 		add(buttonPanel, BorderLayout.SOUTH);
 		add(scorePanel, BorderLayout.NORTH);
 
-		setSize(1400, 628);
+		setSize(1600, 628);
 		setResizable(false);
 
 		setTitle("PowerUP");
@@ -97,7 +97,7 @@ public class PowerUpSimulator extends JFrame implements ActionListener
 		if (time < 150)
 		{
 			time += (multiplier * 1.0 * increment) / 1000.0;
-			game.onTick(time);
+			game.onTick(time, (1.0*increment)/1000.0);
 
 			update();
 			
@@ -144,9 +144,23 @@ public class PowerUpSimulator extends JFrame implements ActionListener
 	private void reset()
 	{
 		time = 0;
+		double [] redSpeeds = new double[3];
+		double [] blueSpeeds = new double[3];
+		for (int i = 0; i < redSpeeds.length; i++)
+		{
+			redSpeeds[i] = game.getRedTeam().getRobots()[i].getSpeed();
+			blueSpeeds[i] = game.getBlueTeam().getRobots()[i].getSpeed();
+		}
 		
 		game.getRedTeam().initialize();
 		game.getBlueTeam().initialize();
+		
+		for (int i = 0; i < redSpeeds.length; i++)
+		{
+			game.getRedTeam().getRobots()[i].setSpeed(redSpeeds[i] );
+			game.getBlueTeam().getRobots()[i].setSpeed(blueSpeeds[i]);
+		}
+		
 		update();
 		board.repaint();
 	}

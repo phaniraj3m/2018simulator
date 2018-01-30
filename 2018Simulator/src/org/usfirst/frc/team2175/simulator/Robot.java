@@ -18,7 +18,7 @@ public class Robot
 
 	int color;
 	double x_position, y_position;
-	double speed; // in inches / second
+	double speed,speedInches; // in pixels/sec, and inch / second
 
 	public Robot(double x, double y, Team team, int number)
 	{
@@ -86,16 +86,18 @@ public class Robot
 
 	}
 
-	public void move(double gameTime)
+	public void move(double gameTime, double incr)
 	{
 
 		if (gameTime < 16)
 		{
 			if (color == Game.BLUE)
-				x_position -= (1.1 + number);
+				x_position -= speed * incr; // speed is feet per second - need to convert to pixels per second, and multiply by time diff
 			else
-				x_position += (2.2 - number);
-
+				x_position += speed * incr;
+			
+			System.out.println(color + " " + number +  " " + x_position);
+			
 		}
 		else
 		{
@@ -165,12 +167,12 @@ public class Robot
 					{
 						trans = convertInchesToPixels(x_targ, y_targ);
 
-						x_position = speed *(trans[0] - x_position) + x_position;
-						y_position = speed * (trans[1] - y_position) + y_position;
+						x_position = speed * incr * (trans[0] - x_position) + x_position;
+						y_position = speed * incr * (trans[1] - y_position) + y_position;
 						// System.out.println(
 						// "next inch " + x_targ + ":" + y_targ);
-						// System.out.println(gameTime +
-						// " next pixel " + x_position + ":" + y_position);
+						System.out.println(gameTime +
+						" next pixel " + x_position + ":" + y_position);
 						break;
 					}
 				}
@@ -233,11 +235,16 @@ public class Robot
 
 	public double getSpeed()
 	{
-		return speed;
+		return speedInches;
 	}
 
-	public void setSpeed(double speed)
+	public void setSpeed(double speedInches)
 	{
-		this.speed = speed;
+		// we're going to convert input inches/sec to pixels/sec
+		this.speedInches = speedInches;
+				
+		// 900 pixels = width = 648 inches, 440 pixel= height = 324 inches, so 1 inch = 0.74 pixel
+		this.speed = speedInches * 0.74;
+//		System.out.println(color + " " + number +  " " + speed);
 	}
 }

@@ -25,9 +25,9 @@ public class VaultPanel extends JPanel
 	JLabel boost = new JLabel();
 	JLabel levitate = new JLabel();
 	
-	JSlider speed1 = new JSlider(JSlider.HORIZONTAL,-10,10,0);
-	JSlider speed2 = new JSlider(JSlider.HORIZONTAL,-10,10,0);
-	JSlider speed3 = new JSlider(JSlider.HORIZONTAL,-10,10,0);
+	JSlider speed1 = new JSlider(JSlider.HORIZONTAL,10,200,20);
+	JSlider speed2 = new JSlider(JSlider.HORIZONTAL,10,200,30);
+	JSlider speed3 = new JSlider(JSlider.HORIZONTAL,10,200,40);
 
 	public VaultPanel(int color, Team team)
 	{
@@ -63,13 +63,38 @@ public class VaultPanel extends JPanel
 		add(speed3);
 		updateScores(0, 0, 0);
 		
+		team.getRobots()[0].setSpeed(speed1.getValue());
+		team.getRobots()[1].setSpeed(speed2.getValue());
+		team.getRobots()[2].setSpeed(speed3.getValue());
+		
 		speed1.addChangeListener(new ChangeListener() {
 			
 			@Override
 			public void stateChanged(ChangeEvent e)
 			{
-				double value = 1.0 + (1.0 * speed1.getValue())/10 ;
+				double value = 1.0 * speed1.getValue();
 				team.getRobots()[0].setSpeed(value);
+				
+			}
+		});
+		speed2.addChangeListener(new ChangeListener() {
+			
+			@Override
+			public void stateChanged(ChangeEvent e)
+			{
+				double value = 1.0 * speed2.getValue();
+				team.getRobots()[1].setSpeed(value);
+				
+			}
+		});
+		
+		speed3.addChangeListener(new ChangeListener() {
+			
+			@Override
+			public void stateChanged(ChangeEvent e)
+			{
+				double value = 1.0 * speed3.getValue();
+				team.getRobots()[2].setSpeed(value);
 				
 			}
 		});
