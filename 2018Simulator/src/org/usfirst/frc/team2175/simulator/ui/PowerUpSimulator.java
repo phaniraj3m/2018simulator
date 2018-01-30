@@ -17,7 +17,7 @@ public class PowerUpSimulator extends JFrame implements ActionListener
 	boolean start = false;
 
 	Board board = new Board();
-	Game game;
+	Game game= new Game();
 	ScorePanel scorePanel;
 	VaultPanel redVault, blueVault;
 
@@ -43,8 +43,8 @@ public class PowerUpSimulator extends JFrame implements ActionListener
 
 		add(board);
 
-		redVault = new VaultPanel(Game.RED);
-		blueVault = new VaultPanel(Game.BLUE);
+		redVault = new VaultPanel(Game.RED,game.getRedTeam() );
+		blueVault = new VaultPanel(Game.BLUE, game.getBlueTeam());
 
 		scorePanel = new ScorePanel();
 		ButtonPanel buttonPanel = new ButtonPanel(this);
