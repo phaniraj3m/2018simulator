@@ -42,12 +42,19 @@ public class Team
 			robots[0] = new Robot(180.0,80.0, this, 0);
 			robots[1] = new Robot(180.0,250.0,this, 1);
 			robots[2] = new Robot(180,360, this, 2);
+			
+			robots[0].setSpeed(0.6);
+			robots[1].setSpeed(0.7);
+			robots[2].setSpeed(0.8);
 		}
 		else
 		{
 			robots[0] = new Robot(980, 75, this, 0);
 			robots[1] = new Robot(980, 160, this, 1);
 			robots[2] = new Robot(980, 380, this, 2);
+			robots[0].setSpeed(0.1);
+			robots[1].setSpeed(0.8);
+			robots[2].setSpeed(0.9);
 
 		}
 		score = 0;

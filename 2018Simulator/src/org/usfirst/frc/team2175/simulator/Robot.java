@@ -165,8 +165,8 @@ public class Robot
 					{
 						trans = convertInchesToPixels(x_targ, y_targ);
 
-						x_position = trans[0];
-						y_position = trans[1];
+						x_position = speed *(trans[0] - x_position) + x_position;
+						y_position = speed * (trans[1] - y_position) + y_position;
 						// System.out.println(
 						// "next inch " + x_targ + ":" + y_targ);
 						// System.out.println(gameTime +
@@ -229,5 +229,15 @@ public class Robot
 	public double[] convertInchesToPixels(double x, double y)
 	{
 		return new double[] { 900 * x / 648.0 + 180, 40 - 440 * (y - 324) / 324.0 };
+	}
+
+	public double getSpeed()
+	{
+		return speed;
+	}
+
+	public void setSpeed(double speed)
+	{
+		this.speed = speed;
 	}
 }
