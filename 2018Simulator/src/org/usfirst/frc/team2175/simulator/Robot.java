@@ -243,8 +243,8 @@ public class Robot
 		// we're going to convert input inches/sec to pixels/sec
 		this.speedInches = speedInches;
 				
-		// 900 pixels = width = 648 inches, 440 pixel= height = 324 inches, so 1 inch = 0.74 pixel
-		this.speed = speedInches * 0.74;
+		// 980 pixels = width = 648 inches, 445 pixel= height = 324 inches, so 1 inch = 1.4 pixel
+		this.speed = speedInches * 1.4;
 //		System.out.println(color + " " + number +  " " + speed);
 	}
 }

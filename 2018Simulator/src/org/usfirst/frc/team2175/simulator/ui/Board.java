@@ -48,9 +48,9 @@ public class Board extends JPanel implements ActionListener {
         redCraft2 = new Craft(".//RedWithCube.jpg",185,260);
         redCraft3 = new Craft(".//RedWithCube.jpg",185,370);
         
-        blueCraft1 = new Craft(".//BlueWithCube.jpg",1040,95);
-        blueCraft2 = new Craft(".//BlueWithCube.jpg",1040,190);
-        blueCraft3 = new Craft(".//BlueWithCube.jpg",1040,380);
+        blueCraft1 = new Craft(".//BlueWithCube.jpg",1015,95);
+        blueCraft2 = new Craft(".//BlueWithCube.jpg",1015,190);
+        blueCraft3 = new Craft(".//BlueWithCube.jpg",1015,380);
 
         // timer = new Timer(DELAY, this);
         //timer.start();        
