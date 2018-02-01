@@ -18,7 +18,7 @@ public class Robot
 
 	int color;
 	double x_position, y_position;
-	double speed,speedInches; // in pixels/sec, and inch / second
+	double speed, speedInches; // in pixels/sec, and inch / second
 
 	public Robot(double x, double y, Team team, int number)
 	{
@@ -92,12 +92,14 @@ public class Robot
 		if (gameTime < 16)
 		{
 			if (color == Game.BLUE)
-				x_position -= speed * incr; // speed is feet per second - need to convert to pixels per second, and multiply by time diff
+				x_position -= speed * incr; // speed is feet per second - need
+											// to convert to pixels per second,
+											// and multiply by time diff
 			else
 				x_position += speed * incr;
-			
-			System.out.println(color + " " + number +  " " + x_position);
-			
+
+			System.out.println(color + " " + number + " " + x_position);
+
 		}
 		else
 		{
@@ -108,7 +110,7 @@ public class Robot
 			{
 				// try moving robot red 0
 
-				// target = 600,40
+				// target = 600,40 in inches, 0,0 is bottom left
 
 				switch (number) {
 				case 0: // portal 1
@@ -120,23 +122,23 @@ public class Robot
 					target[1] = 120;
 					break;
 				case 2: // portal 2
-					target[0] = 600;
-					target[1] = 320;
+					target[0] = 590;
+					target[1] = 300;
 					break;
 				}
 			}
-			
+
 			if (color == Game.BLUE)
 			{
 				// try moving robot blue
 
 				switch (number) {
 				case 0: // portal 1
-					target[0] = 20;
-					target[1] = 310;
+					target[0] = 40;
+					target[1] = 290;
 					break;
 				case 1: // blue scale
-					target[0] = 330;
+					target[0] = 300;
 					target[1] = 120;
 					break;
 				case 2: // portal 2
@@ -157,23 +159,56 @@ public class Robot
 
 			if (path != null)
 			{
-				for (int i = 0; i < 100; i++)
-				{
-					int off = (path.length / 12 + i + path.length / div) % path.length;
-					double x_targ = path[off][0];
-					double y_targ = path[off][1];
-					Vertex[] v = m.findZone(m.getRedNodes(), x_targ, y_targ, 30, 30);
-					if (v[0] != null)
-					{
-						trans = convertInchesToPixels(x_targ, y_targ);
 
-						x_position = speed * incr * (trans[0] - x_position) + x_position;
-						y_position = speed * incr * (trans[1] - y_position) + y_position;
-						// System.out.println(
-						// "next inch " + x_targ + ":" + y_targ);
-						System.out.println(gameTime +
-						" next pixel " + x_position + ":" + y_position);
+				// lets move at the speed allowed
+
+				double distMoved = speedInches * incr; // this is approximately
+														// how much we should
+														// move
+
+				double dist = 0.0;
+				boolean foundMove = false;
+
+				for (int i = 1; i < path.length; i++)
+				{
+					double delta = Math
+							.sqrt(Math.pow(path[i][0] - path[i - 1][0], 2) + Math.pow(path[i][1] - path[i - 1][1], 2));
+					dist += delta;
+					if (dist > distMoved)
+					{
+						trans = convertInchesToPixels(path[i][0], path[i][1]);
+						x_position = trans[0];
+						y_position = trans[1];
+						foundMove = true;
 						break;
+					}
+				}
+				if (!foundMove && path.length > 2)
+				{
+					trans = convertInchesToPixels(path[path.length - 1][0], path[path.length - 1][1]);
+					x_position = trans[0];
+					y_position = trans[1];
+				}
+
+				if (false)
+				{
+					for (int i = 0; i < 100; i++)
+					{
+						int off = (path.length / 12 + i + path.length / div) % path.length;
+						double x_targ = path[off][0];
+						double y_targ = path[off][1];
+						Vertex[] v = m.findZone(m.getRedNodes(), x_targ, y_targ, 30, 30);
+						if (v[0] != null)
+						{
+							trans = convertInchesToPixels(x_targ, y_targ);
+
+							x_position = speed * incr * (trans[0] - x_position) + x_position;
+							y_position = speed * incr * (trans[1] - y_position) + y_position;
+							// System.out.println(
+							// "next inch " + x_targ + ":" + y_targ);
+							System.out.println(gameTime + " next pixel " + x_position + ":" + y_position);
+							break;
+						}
 					}
 				}
 
@@ -242,9 +277,10 @@ public class Robot
 	{
 		// we're going to convert input inches/sec to pixels/sec
 		this.speedInches = speedInches;
-				
-		// 980 pixels = width = 648 inches, 445 pixel= height = 324 inches, so 1 inch = 1.4 pixel
+
+		// 980 pixels = width = 648 inches, 445 pixel= height = 324 inches, so 1
+		// inch = 1.4 pixel
 		this.speed = speedInches * 1.4;
-//		System.out.println(color + " " + number +  " " + speed);
+		// System.out.println(color + " " + number + " " + speed);
 	}
 }

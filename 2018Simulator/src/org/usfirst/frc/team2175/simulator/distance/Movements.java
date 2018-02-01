@@ -130,7 +130,7 @@ public class Movements
 		
 		
 		double totalTime = 15; // seconds
-		double timeStep = 0.1; // period of control loop on Rio, seconds
+		double timeStep = 0.001; // period of control loop on Rio, seconds
 		double robotTrackWidth = 2; // distance between left and right
 									// wheels, feet
 
@@ -267,8 +267,8 @@ public class Movements
 					}
 				}
 
-				double totalTime = 8; // seconds
-				double timeStep = 0.1; // period of control loop on Rio, seconds
+				double totalTime = 0.8; // seconds
+				double timeStep = 0.001; // period of control loop on Rio, seconds
 				double robotTrackWidth = 2; // distance between left and right
 											// wheels, feet
 
