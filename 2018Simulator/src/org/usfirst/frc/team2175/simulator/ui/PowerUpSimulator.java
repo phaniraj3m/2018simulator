@@ -63,7 +63,7 @@ public class PowerUpSimulator extends JFrame implements ActionListener
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		Timer timer = new Timer(increment, this);
-		timer.setInitialDelay(5000);
+		timer.setInitialDelay(1000);
 		timer.start();
 	}
 

@@ -43,6 +43,20 @@ public class Movements
 		double [] end = new double [] {363,28};
 
 		
+		start = new double [] {467,290};
+		end = new double [] {40,310};
+		
+		for (int i = 0; i < 2; i++)
+		{
+			start[0] = start[0]-10;
+			bluepath = m.getPath(start[0],start[1],end[0],end[1], Game.BLUE);
+			
+			m.display(bluepath, false, start,end);			
+		}
+
+		
+		if (true) return;
+		
 		bluepath = m.getPath(start[0],start[1],end[0],end[1], Game.BLUE);
 		m.display(bluepath, false, start,end);
 		
@@ -54,14 +68,16 @@ public class Movements
 		m.display(redpath, true, start,end);
 		
 		
-		start = new double [] {43.2, 294.54545454545456};
-		end = new double [] {600,40};
+		start = new double [] {434,290};
+		end = new double [] {40,310};
 		
-		redpath = m.getPath(start[0],start[1],end[0],end[1], Game.RED);
-		m.display(redpath, true, start,end);
 		bluepath = m.getPath(start[0],start[1],end[0],end[1], Game.BLUE);
 		
 		m.display(bluepath, false, start,end);
+		
+		redpath = m.getPath(start[0],start[1],end[0],end[1], Game.RED);
+		m.display(redpath, true, start,end);
+
 		
 		
 		
@@ -117,7 +133,7 @@ public class Movements
 		{
 			if (vertex != null)
 			{
-				waypoints[j] = new double[] { vertex.getX(), vertex.getY() };
+				waypoints[j] = new double[] { vertex.getX()+vertex.getX_width()/2, vertex.getY()+vertex.getY_height()/2 };
 				j++;
 			}
 		}
@@ -128,9 +144,13 @@ public class Movements
 		waypoints[waypoints.length-1][0] = x_target;
 		waypoints[waypoints.length-1][1] = y_target;
 		
+		double delta = Math
+				.sqrt(Math.pow(x_start - x_target, 2) + Math.pow(y_start-y_target, 2));
 		
-		double totalTime = 15; // seconds
-		double timeStep = 0.001; // period of control loop on Rio, seconds
+		double speed = 30;
+		
+		double totalTime = delta/speed; // seconds
+		double timeStep = 0.005; // period of control loop on Rio, seconds
 		double robotTrackWidth = 2; // distance between left and right
 									// wheels, feet
 
@@ -267,7 +287,7 @@ public class Movements
 					}
 				}
 
-				double totalTime = 0.8; // seconds
+				double totalTime = 0.6; // seconds
 				double timeStep = 0.001; // period of control loop on Rio, seconds
 				double robotTrackWidth = 2; // distance between left and right
 											// wheels, feet

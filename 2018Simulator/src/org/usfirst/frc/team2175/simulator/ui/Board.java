@@ -15,6 +15,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+import org.usfirst.frc.team2175.simulator.Team;
+
 
 public class Board extends JPanel implements ActionListener {
 
@@ -43,13 +45,13 @@ public class Board extends JPanel implements ActionListener {
         setFocusable(true);
         setBackground(Color.BLACK);
 
-        redCraft1 = new Craft(".//RedWithCube1.jpg",185,90);        
-        redCraft2 = new Craft(".//RedWithCube2.jpg",185,260);
-        redCraft3 = new Craft(".//RedWithCube3.jpg",185,370);
+        redCraft1 = new Craft(".//RedWithCube1.jpg",(int)Team.RED_X,(int)Team.RED_Y_0);        
+        redCraft2 = new Craft(".//RedWithCube2.jpg",(int)Team.RED_X,(int)Team.RED_Y_1);
+        redCraft3 = new Craft(".//RedWithCube3.jpg",(int)Team.RED_X,(int)Team.RED_Y_2);
         
-        blueCraft1 = new Craft(".//BlueWithCube1.jpg",1015,95);
-        blueCraft2 = new Craft(".//BlueWithCube2.jpg",1015,190);
-        blueCraft3 = new Craft(".//BlueWithCube3.jpg",1015,380);
+        blueCraft1 = new Craft(".//BlueWithCube1.jpg",(int)Team.BLUE_X,(int)Team.BLUE_Y_0);
+        blueCraft2 = new Craft(".//BlueWithCube2.jpg",(int)Team.BLUE_X,(int)Team.BLUE_Y_1);
+        blueCraft3 = new Craft(".//BlueWithCube3.jpg",(int)Team.BLUE_X,(int)Team.BLUE_Y_2);
 
         // timer = new Timer(DELAY, this);
         //timer.start();        

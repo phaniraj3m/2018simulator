@@ -5,6 +5,19 @@ import java.util.Random;
 public class Team
 {
 
+	
+	public static double RED_X = 185;
+	public static double BLUE_X = 1015;
+	
+	public static double RED_Y_0 = 80;
+	public static double RED_Y_1 = 250;
+	public static double RED_Y_2 = 380;
+	
+	public static double BLUE_Y_0 = 85;
+	public static double BLUE_Y_1 = 160;
+	public static double BLUE_Y_2 = 380;
+	
+	
 	Random r = new Random();
 
 	Vault vault = new Vault();
@@ -39,22 +52,22 @@ public class Team
 		if (color == Game.RED)
 		{
 
-			robots[0] = new Robot(180.0,80.0, this, 0);
-			robots[1] = new Robot(180.0,250.0,this, 1);
-			robots[2] = new Robot(180,360, this, 2);
+			robots[0] = new Robot(RED_X,RED_Y_0, this, 0);
+			robots[1] = new Robot(RED_X,RED_Y_1,this, 1);
+			robots[2] = new Robot(RED_X,RED_Y_2, this, 2);
 			
-			robots[0].setSpeed(0.6);
-			robots[1].setSpeed(0.7);
-			robots[2].setSpeed(0.8);
+			robots[0].setSpeed(0.3);
+			robots[1].setSpeed(0.3);
+			robots[2].setSpeed(0.3);
 		}
 		else
 		{
-			robots[0] = new Robot(980, 75, this, 0);
-			robots[1] = new Robot(980, 160, this, 1);
-			robots[2] = new Robot(980, 380, this, 2);
-			robots[0].setSpeed(0.1);
-			robots[1].setSpeed(0.8);
-			robots[2].setSpeed(0.9);
+			robots[0] = new Robot(BLUE_X, BLUE_Y_0, this, 0);
+			robots[1] = new Robot(BLUE_X, BLUE_Y_1, this, 1);
+			robots[2] = new Robot(BLUE_X, BLUE_Y_2, this, 2);
+			robots[0].setSpeed(0.3);
+			robots[1].setSpeed(0.3);
+			robots[2].setSpeed(0.3);
 
 		}
 		score = 0;

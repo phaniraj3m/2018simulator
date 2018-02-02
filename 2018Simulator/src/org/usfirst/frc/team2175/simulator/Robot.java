@@ -92,13 +92,24 @@ public class Robot
 		if (gameTime < 16)
 		{
 			if (color == Game.BLUE)
-				x_position -= speed * incr; // speed is feet per second - need
-											// to convert to pixels per second,
-											// and multiply by time diff
-			else
-				x_position += speed * incr;
+			{
+				if (x_position > 890)
 
-			System.out.println(color + " " + number + " " + x_position);
+				{
+					x_position -= speed * incr; // speed is feet per second -
+												// need
+												// to convert to pixels per
+												// second,
+				} // and multiply by time diff
+			}
+			else
+			{
+				if (x_position < 370)
+				{
+					x_position += speed * incr;
+				}
+			}
+			// System.out.println(color + " " + number + " " + x_position);
 
 		}
 		else
@@ -122,8 +133,14 @@ public class Robot
 					target[1] = 120;
 					break;
 				case 2: // portal 2
-					target[0] = 590;
-					target[1] = 300;
+					target[0] = 600;
+					target[1] = 310;
+					// double[] trans = convertPixelsToInches(x_position,
+					// y_position);
+					// System.out.println("initial pixel " + x_position + ":" +
+					// y_position);
+					// System.out.println("initial inch " + trans[0] + ":" +
+					// trans[1]);
 					break;
 				}
 			}
@@ -135,15 +152,17 @@ public class Robot
 				switch (number) {
 				case 0: // portal 1
 					target[0] = 40;
-					target[1] = 290;
+					target[1] = 310;
+
 					break;
 				case 1: // blue scale
-					target[0] = 300;
-					target[1] = 120;
+					target[0] = 335;
+					target[1] = 210;
 					break;
 				case 2: // portal 2
 					target[0] = 20;
 					target[1] = 40;
+
 					break;
 				}
 			}
@@ -174,13 +193,23 @@ public class Robot
 					double delta = Math
 							.sqrt(Math.pow(path[i][0] - path[i - 1][0], 2) + Math.pow(path[i][1] - path[i - 1][1], 2));
 					dist += delta;
+
 					if (dist > distMoved)
 					{
-						trans = convertInchesToPixels(path[i][0], path[i][1]);
-						x_position = trans[0];
-						y_position = trans[1];
-						foundMove = true;
-						break;
+
+						// check if position moving to is valid
+						Vertex[] v = m.findZone(color == Game.BLUE ? m.getBlueNodes() : m.getRedNodes(), path[i][0],
+								path[i][1], 50, 50);
+						if (v[0] != null)
+						{
+
+							trans = convertInchesToPixels(path[i][0], path[i][1]);
+							x_position = trans[0];
+							y_position = trans[1];
+
+							foundMove = true;
+							break;
+						}
 					}
 				}
 				if (!foundMove && path.length > 2)

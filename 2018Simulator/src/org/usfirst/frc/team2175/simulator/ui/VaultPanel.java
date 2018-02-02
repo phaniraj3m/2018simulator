@@ -25,9 +25,9 @@ public class VaultPanel extends JPanel
 	JLabel boost = new JLabel();
 	JLabel levitate = new JLabel();
 	
-	JSlider speed1 = new JSlider(JSlider.HORIZONTAL,10,200,110);
-	JSlider speed2 = new JSlider(JSlider.HORIZONTAL,10,200,120);
-	JSlider speed3 = new JSlider(JSlider.HORIZONTAL,10,200,115);
+	JSlider speed1 = new JSlider(JSlider.HORIZONTAL,10,200,95);
+	JSlider speed2 = new JSlider(JSlider.HORIZONTAL,10,200,90);
+	JSlider speed3 = new JSlider(JSlider.HORIZONTAL,10,200,95);
 
 	public VaultPanel(int color, Team team)
 	{
