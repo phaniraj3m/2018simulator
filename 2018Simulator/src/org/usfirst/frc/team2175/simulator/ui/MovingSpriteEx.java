@@ -12,7 +12,7 @@ public class MovingSpriteEx extends JFrame {
 
 	private void initUI() {
 
-		add(new Board());
+		add(new Board(null));
 
 		setSize(1200, 700);
 		setResizable(false);

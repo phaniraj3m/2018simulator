@@ -7,6 +7,8 @@ import org.usfirst.frc.team2175.simulator.distance.Vertex;
 
 public class Robot
 {
+	
+	private Capabilities capabilities = new Capabilities();
 
 	Random r = new Random();
 
@@ -93,7 +95,7 @@ public class Robot
 		{
 			if (color == Game.BLUE)
 			{
-				if (x_position > 890)
+				if (x_position > 755)
 
 				{
 					x_position -= speed * incr; // speed is feet per second -
@@ -104,7 +106,7 @@ public class Robot
 			}
 			else
 			{
-				if (x_position < 370)
+				if (x_position < 200)
 				{
 					x_position += speed * incr;
 				}
@@ -289,12 +291,12 @@ public class Robot
 
 	public double[] convertPixelsToInches(double x, double y)
 	{
-		return new double[] { 648 * (x - 180) / 900, 324 - (y - 40) * 324 / 440 };
+		return new double[] { 648 * (x - 37) / 880, 324 - (y - 35) * 324 / 440 };
 	}
 
 	public double[] convertInchesToPixels(double x, double y)
 	{
-		return new double[] { 900 * x / 648.0 + 180, 40 - 440 * (y - 324) / 324.0 };
+		return new double[] { 880 * x / 648.0 + 37, 35 - 440 * (y - 324) / 324.0 };
 	}
 
 	public double getSpeed()
@@ -309,7 +311,12 @@ public class Robot
 
 		// 980 pixels = width = 648 inches, 445 pixel= height = 324 inches, so 1
 		// inch = 1.4 pixel
-		this.speed = speedInches * 1.4;
+		this.speed = speedInches * 1.2;
 		// System.out.println(color + " " + number + " " + speed);
+	}
+
+	public Capabilities getCapabilities()
+	{
+		return capabilities;
 	}
 }

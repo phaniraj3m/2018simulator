@@ -26,19 +26,19 @@ public class ScorePanel extends JPanel
 		setLayout(new BoxLayout(this,BoxLayout.X_AXIS));
 		
 		
-
+		add(Box.createHorizontalStrut(100));
 		redScore = new JLabel("Red:" + 0);
 		redScore.setFont(scoreFont);
 		redScore.setForeground(Color.RED);
 		add(redScore);
 		
-		add(Box.createHorizontalStrut(600));
+		add(Box.createHorizontalStrut(400));
 		
 		time = new JLabel("Time:" + 0);
 		time.setFont(scoreFont);
 		add(time);
 
-		add(Box.createHorizontalStrut(460));
+		add(Box.createHorizontalStrut(360));
 		blueScore = new JLabel("Blue:" + 0);
 		blueScore.setForeground(Color.BLUE);
 		blueScore.setFont(scoreFont);

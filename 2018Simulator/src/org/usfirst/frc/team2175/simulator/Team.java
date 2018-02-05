@@ -6,8 +6,8 @@ public class Team
 {
 
 	
-	public static double RED_X = 185;
-	public static double BLUE_X = 1015;
+	public static double RED_X = 40;
+	public static double BLUE_X = 870;
 	
 	public static double RED_Y_0 = 80;
 	public static double RED_Y_1 = 250;

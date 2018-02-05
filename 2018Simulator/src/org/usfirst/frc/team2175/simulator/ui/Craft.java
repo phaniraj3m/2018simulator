@@ -2,10 +2,16 @@ package org.usfirst.frc.team2175.simulator.ui;
 
 import java.awt.Image;
 import java.awt.event.KeyEvent;
+
 import javax.swing.ImageIcon;
+
+import org.usfirst.frc.team2175.simulator.Robot;
 
 public class Craft
 {
+	
+	private Robot robot;
+	
 
 	private int dx;
 	private int dy;
@@ -144,5 +150,15 @@ public class Craft
 	public void setY(int y)
 	{
 		this.y = y;
+	}
+
+	public Robot getRobot()
+	{
+		return robot;
+	}
+
+	public void setRobot(Robot robot)
+	{
+		this.robot = robot;
 	}
 }

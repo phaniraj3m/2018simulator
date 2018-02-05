@@ -16,7 +16,7 @@ public class PowerUpSimulator extends JFrame implements ActionListener
 {
 	boolean start = false;
 
-	Board board = new Board();
+	Board board = null;
 	Game game= new Game();
 	ScorePanel scorePanel;
 	VaultPanel redVault, blueVault;
@@ -30,6 +30,7 @@ public class PowerUpSimulator extends JFrame implements ActionListener
 	public PowerUpSimulator()
 	{
 
+		board = new Board(game);
 		initUI();
 
 		// game.start();
@@ -42,6 +43,7 @@ public class PowerUpSimulator extends JFrame implements ActionListener
 		getContentPane().setLayout(new BorderLayout());
 
 		add(board);
+		
 
 		redVault = new VaultPanel(Game.RED,game.getRedTeam() );
 		blueVault = new VaultPanel(Game.BLUE, game.getBlueTeam());
@@ -55,7 +57,7 @@ public class PowerUpSimulator extends JFrame implements ActionListener
 		add(buttonPanel, BorderLayout.SOUTH);
 		add(scorePanel, BorderLayout.NORTH);
 
-		setSize(1600, 628);
+		setSize(1200, 600);
 		setResizable(false);
 
 		setTitle("PowerUP");

@@ -58,9 +58,9 @@ public class VaultPanel extends JPanel
 		add(levitate);
 
 		add(Box.createVerticalStrut(100));
-		add(speed1);
-		add(speed2);
-		add(speed3);
+		//add(speed1);
+		//add(speed2);
+		//add(speed3);
 		updateScores(0, 0, 0);
 		
 		team.getRobots()[0].setSpeed(speed1.getValue());

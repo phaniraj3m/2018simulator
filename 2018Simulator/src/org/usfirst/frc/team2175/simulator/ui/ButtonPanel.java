@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -17,8 +19,20 @@ public class ButtonPanel extends JPanel
 		setBackground(new Color(110, 210, 255));
 		simulator = powerUpSimulator;
 		
+		setLayout(new BoxLayout(this,BoxLayout.X_AXIS));
+		
+		add(Box.createHorizontalStrut(130));
+		JButton configureRed = new JButton("Configure");
+		add(configureRed);
+		add(Box.createHorizontalStrut(350));
+		
 		JButton start = new JButton("Start");
 		add(start);
+		add(Box.createHorizontalStrut(350));
+		
+		JButton configureBlue = new JButton("Configure");
+		add(configureBlue);
+		add(Box.createHorizontalStrut(130));
 		
 		start.addActionListener(new ActionListener() {
 			
